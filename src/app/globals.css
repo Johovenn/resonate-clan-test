@@ -51,7 +51,60 @@ body {
     font-weight: bold;
     color: #fff;
     animation: white-glow 1.5s infinite alternate;
+}@keyframes white-glow {
+  0% {
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
+  }
+  50% {
+      text-shadow: 0 0 10px #fff, 0 0 15px #fff, 0 0 25px #fff;
+  }
+  100% {
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
+  }
 }
+
+.animated-white-glow {
+    font-weight: bold;
+    color: #fff;
+    animation: white-glow 1.5s infinite alternate;
+}
+
+@media (max-width: 640px) {
+  .animated-white-glow {
+    animation: white-glow 1.5s infinite alternate;
+  }
+
+  @keyframes white-glow {
+    0% {
+        text-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 10px #fff;
+    }
+    50% {
+        text-shadow: 0 0 5px #fff, 0 0 8px #fff, 0 0 15px #fff;
+    }
+    100% {
+        text-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 10px #fff;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .animated-white-glow {
+    animation: white-glow 1.5s infinite alternate;
+  }
+
+  @keyframes white-glow {
+    0% {
+        text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 8px #fff;
+    }
+    50% {
+        text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 10px #fff;
+    }
+    100% {
+        text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 8px #fff;
+    }
+  }
+}
+
 
 @keyframes pink-glow {
   0% {
