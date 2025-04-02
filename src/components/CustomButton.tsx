@@ -15,7 +15,7 @@ export default function CustomButton(props: CustomButtonProps) {
         <button
             className={`
                 ${PressStart2P.className} px-7 py-3 bg-gradient-to-tr from-purple-600 via-purple-800 to-purple-700
-                hover:from-purple-700 hover:via-purple-900 hover:to-purple-800
+                ${!props.disabled && 'hover:from-purple-700 hover:via-purple-900 hover:to-purple-800'}
                 transition-all duration-3000 ease-in-out outline-2 outline-white text-white rounded-md text-sm
                 ${props.className} ${props.disabled ? "opacity-50 cursor-not-allowed" : ""}
                 shadow-[0_0_20px_2px_rgba(128,0,128,0.7)]  shadow-purple-600
