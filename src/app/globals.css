@@ -24,7 +24,9 @@ body {
 
 @font-face {
   font-family: 'Horizon';
-  src: url('/fonts/Horizon.otf') format('opentype');
+  src: url('/fonts/horizon.otf') format('opentype'),
+       url('/fonts/horizon.woff2') format('woff2'),
+       url('/fonts/horizon.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
