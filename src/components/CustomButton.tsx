@@ -1,12 +1,14 @@
-import { PressStart2P } from "@/app/page";
-import { ReactNode } from "react";
+import { Press_Start_2P } from "next/font/google"
+import { ReactNode } from "react"
 
 interface CustomButtonProps {
-    children: ReactNode | string;
-    onClick?: () => void;
-    className?: string;
-    disabled?: boolean;
+    children: ReactNode | string
+    onClick?: () => void
+    className?: string
+    disabled?: boolean
 }
+
+const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] });
 
 export default function CustomButton(props: CustomButtonProps) {
     return (
@@ -24,5 +26,5 @@ export default function CustomButton(props: CustomButtonProps) {
         >
             {props.children}
         </button>
-    );
+    )
 }
