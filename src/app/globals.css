@@ -51,7 +51,9 @@ body {
     font-weight: bold;
     color: #fff;
     animation: white-glow 1.5s infinite alternate;
-}@keyframes white-glow {
+}
+
+@keyframes white-glow {
   0% {
       text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
   }
@@ -82,7 +84,7 @@ body {
         text-shadow: 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #fff;
     }
     100% {
-        text-shadow: 0 0 1.5px #fff, 0 0 1.5px #fff, 0 0 1.5px #fff;
+        text-shadow: 0 0 0.5px #fff, 0 0 0.5px #fff, 0 0 0.5px #fff;
     }
   }
 }
@@ -94,13 +96,13 @@ body {
 
   @keyframes white-glow {
     0% {
-        text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+        text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff;
     }
     50% {
-        text-shadow: 0 0 4px #fff, 0 0 4px #fff, 0 0 4px #fff;
+        text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff;
     }
     100% {
-        text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff;
+        text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff;
     }
   }
 }
