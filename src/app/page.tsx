@@ -28,7 +28,7 @@ export default function LandingPage() {
 
             <div className="flex flex-col items-center">
                 <div className="flex flex-col items-center">
-                    <h1 className="font-horizon animated-white-glow text-white text-4xl sm:text-5xl md:text-6xl mb-[-20px] sm:mb-[-30px] md:mb-[-40px]">
+                    <h1 className="font-horizon md:animated-white-glow text-white text-4xl sm:text-5xl md:text-6xl mb-[-20px] sm:mb-[-30px] md:mb-[-40px]">
                         FIND YOUR
                     </h1>
                     <h2 className={`${birthstone.className} text-6xl text-white sm:text-7xl md:text-8xl lg:text-9xl animated-pink-glow rotate-[-6deg]`}>
