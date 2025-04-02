@@ -1,14 +1,15 @@
 "use client"
 
-import CustomButton from "@/components/CustomButton";
-import MultipleChoice from "@/components/MultipleChoice";
-import ProgressBar from "@/components/ProgressBar";
-import QuestionBox from "@/components/QuestionBox";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import CustomButton from "@/components/CustomButton"
+import MultipleChoice from "@/components/MultipleChoice"
+import ProgressBar from "@/components/ProgressBar"
+import QuestionBox from "@/components/QuestionBox"
+import { ArrowLeft, ArrowRight } from "lucide-react"
+import { useState } from "react"
 
 export default function ClanTestPage(){
     const [counter, setCounter] = useState(0)
+    const [answers, setAnswers] = useState<string[]>(Array(20).fill(""))
 
     const questions = [
         {
@@ -191,8 +192,13 @@ export default function ClanTestPage(){
                 "Pengamat",
             ],
         },
-    ];
-    
+    ]
+
+    const handleAnswerChange = (selectedOption: string) => {
+        const newAnswers = [...answers]
+        newAnswers[counter] = selectedOption
+        setAnswers(newAnswers)
+    }
     
     return(
         <div
@@ -211,6 +217,8 @@ export default function ClanTestPage(){
             <div className="flex flex-col items-center mt-12">
                 <MultipleChoice 
                     options={questions[counter].answers}
+                    onChange={handleAnswerChange}
+                    selectedOption={answers[counter]}
                 />
             </div>
             
