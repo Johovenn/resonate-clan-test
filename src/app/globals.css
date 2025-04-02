@@ -76,13 +76,13 @@ body {
 
   @keyframes white-glow {
     0% {
-        text-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 10px #fff;
+        text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff;
     }
     50% {
-        text-shadow: 0 0 5px #fff, 0 0 8px #fff, 0 0 15px #fff;
+        text-shadow: 0 0 3px #fff, 0 0 4px #fff, 0 0 5px #fff;
     }
     100% {
-        text-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 10px #fff;
+        text-shadow: 0 0 5px #fff, 0 0 6px #fff, 0 0 7px #fff;
     }
   }
 }
@@ -94,7 +94,7 @@ body {
 
   @keyframes white-glow {
     0% {
-        text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 8px #fff;
+        text-shadow: 0 0 5px #fff, 0 0 4px #fff, 0 0 8px #fff;
     }
     50% {
         text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 10px #fff;
