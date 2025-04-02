@@ -13,29 +13,29 @@ export default function LandingPage() {
     
     return (
         <div
-            className="h-screen w-screen flex items-center justify-evenly bg-cover bg-center"
+            className="h-screen w-screen flex flex-col xl:flex-row items-center justify-evenly bg-cover bg-center px-4 py-8"
             style={{ backgroundImage: "url('/background.png')" }}
         >
-            <div className="relative">
+            <div className="relative mb-8 xl:mb-0">
                 <Image
                     src={'/resonate-with-clan-logo.png'}
                     alt="resonate logo"
                     width={600}
                     height={300}
-                    className="relative z-10"
+                    className="relative z-10 w-full max-w-[600px] h-auto"
                 />
             </div>
 
             <div className="flex flex-col items-center">
                 <div className="flex flex-col items-center">
-                    <h1 className="font-horizon animated-white-glow text-6xl mb-[-40px]">
+                    <h1 className="font-horizon animated-white-glow text-white text-4xl sm:text-5xl md:text-6xl mb-[-20px] sm:mb-[-30px] md:mb-[-40px]">
                         FIND YOUR
                     </h1>
-                    <h2 className={`${birthstone.className} text-9xl animated-pink-glow rotate-[-6deg]`}>
+                    <h2 className={`${birthstone.className} text-6xl text-white sm:text-7xl md:text-8xl lg:text-9xl animated-pink-glow rotate-[-6deg]`}>
                         Clan
                     </h2>
                 </div>
-                <p className={`${PressStart2P.className} text-lg w-[600px] text-center mb-6`}>
+                <p className={`${PressStart2P.className} text-xs text-white sm:text-sm md:text-base lg:text-lg w-full max-w-[600px] text-center mb-6 px-4`}>
                     Hey, Resonians!
                     <br />
                     Find the right clan for you now!
