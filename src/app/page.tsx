@@ -20,7 +20,7 @@ export default function LandingPage() {
                 <Image
                     src={'/resonate-with-clan-logo.png'}
                     alt="resonate logo"
-                    width={600}
+                    width={800}
                     height={300}
                     className="relative z-10 w-full max-w-[600px] h-auto"
                 />
