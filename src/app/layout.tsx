@@ -16,6 +16,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Resonate Clan Test",
   description: "Resonians! Find out what clan you belong to!",
+  icons: {
+    icon: "/jc-logo.png", // Or any other icon path in /public
+    shortcut: "/jc-logo.png",
+    apple: "/jc-logo.png",
+  },
 };
 
 export default function RootLayout({
