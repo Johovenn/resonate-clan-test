@@ -4,6 +4,7 @@ import CustomButton from "@/components/CustomButton"
 import MultipleChoice from "@/components/MultipleChoice"
 import ProgressBar from "@/components/ProgressBar"
 import QuestionBox from "@/components/QuestionBox"
+import { useLanguage } from "@/context/languageContext"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { useState } from "react"
 
@@ -11,189 +12,331 @@ export default function ClanTestPage(){
     const [counter, setCounter] = useState(0)
     const [answers, setAnswers] = useState<string[]>(Array(20).fill(""))
 
+    const {language, setLanguage} = useLanguage()
+
     const questions = [
         {
-            question: "Saat menghadapi masalah besar, pendekatan apa yang paling sering Anda pilih?",
-            answers: [
+            indonesian_question: "Saat menghadapi masalah besar, pendekatan apa yang paling sering Anda pilih?",
+            english_question: "When facing a major problem, which approach do you most often choose?",
+            indonesian_answers: [
                 "Menggunakan logika dan analisis untuk memecahkan masalah secara mendalam dan terstruktur.",
                 "Berkolaborasi dengan orang lain untuk mencari solusi yang bisa mempersatukan berbagai perspektif.",
                 "Menghadapi tantangan secara langsung dengan kekuatan fisik atau keberanian untuk menyelesaikannya.",
                 "Menganalisis situasi dengan cermat dan mencari cara untuk memanfaatkan setiap detail kecil yang mungkin terlewatkan.",
             ],
+            english_answers: [
+                "Using logic and analysis to solve the problem thoroughly and systematically.",
+                "Collaborating with others to find a solution that unites different perspectives.",
+                "Facing the challenge head-on with physical strength or courage to overcome it.",
+                "Carefully analyzing the situation and finding ways to leverage every small overlooked detail.",
+            ],
         },
         {
-            question: "Apa yang paling Anda hargai dalam hubungan antar individu?",
-            answers: [
+            indonesian_question: "Apa yang paling Anda hargai dalam hubungan antar individu?",
+            english_question: "What do you value most in interpersonal relationships?",
+            indonesian_answers: [
                 "Kecerdasan dan pemahaman yang mendalam antara satu sama lain.",
                 "Ikatan emosional yang kuat dan rasa saling mendukung.",
                 "Keberanian dan ketegasan dalam menghadapi tantangan bersama.",
                 "Kepercayaan yang dibangun melalui pengamatan dan penilaian yang akurat.",
             ],
+            english_answers: [
+                "Intelligence and deep mutual understanding.",
+                "A strong emotional bond and mutual support.",
+                "Courage and decisiveness in facing challenges together.",
+                "Trust built through observation and accurate judgment.",
+            ],
         },
         {
-            question: "Jika Anda diminta untuk memimpin sebuah tim dalam suatu proyek besar, apa yang akan Anda lakukan terlebih dahulu?",
-            answers: [
+            indonesian_question: "Jika Anda diminta untuk memimpin sebuah tim dalam suatu proyek besar, apa yang akan Anda lakukan terlebih dahulu?",
+            english_question: "If you were asked to lead a team in a major project, what would you do first?",
+            indonesian_answers: [
                 "Mengumpulkan informasi dan merancang rencana yang sangat rinci untuk memastikan proyek berjalan lancar.",
                 "Memastikan semua anggota tim merasa dihargai dan membangun hubungan kuat di antara mereka.",
                 "Memberikan instruksi jelas dan memastikan tim siap secara fisik dan mental untuk menghadapi tugas.",
                 "Mengamati kondisi dan mencari tahu potensi masalah atau kekuatan yang tersembunyi dalam tim.",
             ],
+            english_answers: [
+                "Gather information and design a very detailed plan to ensure the project runs smoothly.",
+                "Ensure all team members feel valued and build strong relationships among them.",
+                "Give clear instructions and ensure the team is physically and mentally ready for the task.",
+                "Observe the conditions and identify potential hidden problems or strengths within the team.",
+            ],
         },
         {
-            question: "Bagaimana Anda mendekati pembelajaran atau pemecahan masalah baru?",
-            answers: [
+            indonesian_question: "Bagaimana Anda mendekati pembelajaran atau pemecahan masalah baru?",
+            english_question: "How do you approach learning or solving a new problem?",
+            indonesian_answers: [
                 "Dengan menggali informasi lebih dalam, menganalisis data dan fakta yang ada.",
                 "Dengan berdiskusi dan berkolaborasi dengan orang lain untuk melihat berbagai sudut pandang.",
                 "Dengan menghadapi tantangan tersebut secara langsung dan belajar dari pengalaman praktis.",
                 "Dengan memantau dan mengamati setiap detail, memetakan potensi masalah, dan mencari cara untuk memanfaatkan kelebihan yang ada.",
             ],
+            english_answers: [
+                "By diving deeper into information, analyzing available data and facts.",
+                "By discussing and collaborating with others to view different perspectives.",
+                "By facing the challenge directly and learning through practical experience.",
+                "By monitoring and observing every detail, mapping potential issues, and finding ways to utilize existing strengths.",
+            ],
         },
         {
-            question: "Saat Anda berhadapan dengan situasi penuh tekanan, bagaimana Anda merespons?",
-            answers: [
+            indonesian_question: "Saat Anda berhadapan dengan situasi penuh tekanan, bagaimana Anda merespons?",
+            english_question: "When you face a high-pressure situation, how do you respond?",
+            indonesian_answers: [
                 "Menggunakan strategi dan perencanaan untuk memastikan saya tetap fokus dan mengatasi setiap masalah satu per satu.",
                 "Mencari cara untuk menjaga hubungan baik dan membuat tim merasa tenang serta bersatu.",
                 "Mengandalkan kekuatan dan ketahanan fisik untuk tetap bertahan dan menyelesaikan tugas.",
                 "Menggunakan pengamatan tajam saya untuk melihat ancaman yang tidak terlihat dan mengatur langkah yang tepat.",
             ],
+            english_answers: [
+                "Using strategy and planning to stay focused and tackle each issue one by one.",
+                "Finding ways to maintain good relationships and keep the team calm and united.",
+                "Relying on strength and physical endurance to push through and complete the task.",
+                "Using sharp observation to spot hidden threats and plan the right course of action.",
+            ],
         },
         {
-            question: "Apa yang paling Anda nikmati dalam pekerjaan atau aktivitas sehari-hari Anda?",
-            answers: [
+            indonesian_question: "Apa yang paling Anda nikmati dalam pekerjaan atau aktivitas sehari-hari Anda?",
+            english_question: "What do you enjoy most in your work or daily activities?",
+            indonesian_answers: [
                 "Menghadapi tantangan intelektual dan memecahkan masalah yang membutuhkan pengetahuan mendalam.",
                 "Membangun hubungan yang berarti dan menciptakan rasa kebersamaan dengan orang lain.",
                 "Menghadapi tantangan fisik dan menggunakan kekuatan tubuh untuk mencapai tujuan.",
                 "Mengamati dan merencanakan dengan ketelitian, mencari tahu apa yang tersembunyi atau yang bisa diperbaiki.",
             ],
+            english_answers: [
+                "Facing intellectual challenges and solving problems that require deep knowledge.",
+                "Building meaningful relationships and creating a sense of togetherness with others.",
+                "Facing physical challenges and using body strength to achieve goals.",
+                "Observing and planning carefully, identifying what's hidden or can be improved.",
+            ],
         },
         {
-            question: "Apa yang menurut Anda penting dalam sebuah kemenangan?",
-            answers: [
+            indonesian_question: "Apa yang menurut Anda penting dalam sebuah kemenangan?",
+            english_question: "What do you consider important in a victory?",
+            indonesian_answers: [
                 "Kemenangan yang diperoleh melalui kecerdasan dan perencanaan yang matang.",
                 "Kemenangan yang diperoleh dengan menjaga solidaritas dan rasa kebersamaan dalam tim.",
                 "Kemenangan yang diperoleh melalui kekuatan fisik dan keteguhan hati dalam bertarung.",
                 "Kemenangan yang diperoleh melalui ketajaman indra dan kemampuan untuk melihat peluang yang tersembunyi.",
             ],
+            english_answers: [
+                "Victory gained through intelligence and well-thought-out planning.",
+                "Victory achieved by maintaining solidarity and a sense of togetherness in the team.",
+                "Victory achieved through physical strength and mental resilience in battle.",
+                "Victory earned through sharp senses and the ability to spot hidden opportunities.",
+            ],
         },
         {
-            question: "Ketika menghadapi ketidakpastian, bagaimana Anda menghadapinya?",
-            answers: [
+            indonesian_question: "Ketika menghadapi ketidakpastian, bagaimana Anda menghadapinya?",
+            english_question: "When facing uncertainty, how do you deal with it?",
+            indonesian_answers: [
                 "Mengumpulkan data dan informasi sebanyak mungkin untuk merencanakan langkah berikutnya.",
                 "Berbicara dengan orang lain untuk menjaga semangat dan memastikan semua orang tetap merasa terhubung.",
                 "Menghadapi ketidakpastian dengan keyakinan dan keberanian untuk bertindak meski belum pasti.",
                 "Menganalisis situasi dengan seksama dan menunggu momen yang tepat untuk bertindak.",
             ],
+            english_answers: [
+                "Gather as much data and information as possible to plan the next steps.",
+                "Talk to others to stay motivated and ensure everyone feels connected.",
+                "Face uncertainty with confidence and courage to act despite not knowing the outcome.",
+                "Analyze the situation carefully and wait for the right moment to act.",
+            ],
         },
         {
-            question: "Bagaimana Anda menghadapi tantangan besar yang tiba-tiba muncul?",
-            answers: [
+            indonesian_question: "Bagaimana Anda menghadapi tantangan besar yang tiba-tiba muncul?",
+            english_question: "How do you handle a sudden major challenge?",
+            indonesian_answers: [
                 "Saya mulai merencanakan langkah-langkah yang logis dan terperinci untuk mengatasi masalah tersebut.",
                 "Saya berusaha mencari dukungan dari orang lain dan bekerja sama untuk menyelesaikannya.",
                 "Saya langsung bertindak dan mencari solusi dengan kekuatan fisik atau ketegasan.",
                 "Saya mengamati situasi dengan cermat, mencari peluang atau celah yang mungkin ada untuk mengatasi masalah.",
             ],
+            english_answers: [
+                "I start planning logical and detailed steps to solve the problem.",
+                "I try to get support from others and work together to solve it.",
+                "I act immediately and find solutions using physical strength or firmness.",
+                "I observe the situation carefully and look for opportunities or gaps to overcome the issue.",
+            ],
         },
         {
-            question: "Saat berada di sebuah kelompok, apa peran yang biasanya Anda ambil?",
-            answers: [
+            indonesian_question: "Saat berada di sebuah kelompok, apa peran yang biasanya Anda ambil?",
+            english_question: "When you're in a group, what role do you usually take?",
+            indonesian_answers: [
                 "Saya sering menjadi orang yang merencanakan dan memberi arahan berdasarkan analisis saya.",
                 "Saya berusaha untuk menjaga keharmonisan dan memastikan semua orang merasa nyaman dan dihargai.",
                 "Saya cenderung menjadi orang yang langsung bertindak dan memastikan tugas terlaksana dengan baik.",
                 "Saya lebih suka mengamati dan mencari celah strategis untuk memperbaiki atau meningkatkan keadaan.",
             ],
-        },
-        {
-            question: "Jika Anda melihat seseorang melakukan kesalahan besar, bagaimana Anda akan bertindak?",
-            answers: [
-                "Saya akan menganalisis kesalahan mereka dan memberikan solusi yang terperinci untuk memperbaikinya.",
-                "Saya akan mendekati mereka dengan empati dan mencari cara untuk membantu mereka belajar dari kesalahan itu.",
-                "Saya akan memberitahukan mereka dengan tegas tentang kesalahan tersebut dan memberikan arahan untuk memperbaikinya.",
-                "Saya akan melihat lebih dalam untuk mengetahui penyebab kesalahan dan mencari cara untuk mencegahnya terjadi lagi di masa depan.",
+            english_answers: [
+                "I'm usually the one who plans and gives direction based on my analysis.",
+                "I try to maintain harmony and make sure everyone feels comfortable and appreciated.",
+                "I'm the type to take direct action and ensure the task gets done well.",
+                "I prefer to observe and look for strategic gaps to improve or enhance the situation.",
             ],
         },
         {
-            question: "Dalam hal pengambilan keputusan, apa yang paling penting bagi Anda?",
-            answers: [
-                "Keputusan yang berbasis logika, bukti, dan analisis yang mendalam.",
-                "Keputusan yang mempertimbangkan hubungan antar individu dan dampaknya terhadap komunitas.",
-                "Keputusan yang memberikan hasil cepat dan mengandalkan kekuatan untuk mencapai tujuan.",
-                "Keputusan yang didasarkan pada pengamatan mendalam dan pemahaman terhadap situasi yang lebih luas.",
+            indonesian_question: "Apa yang membuat Anda merasa paling puas setelah menyelesaikan sebuah proyek?",
+            english_question: "What makes you feel most satisfied after completing a project?",
+            indonesian_answers: [
+                "Melihat bagaimana rencana saya berjalan sesuai analisis dan perhitungan.",
+                "Melihat tim saya bekerja bersama dengan harmonis dan saling mendukung.",
+                "Mengetahui bahwa saya menghadapi tantangan besar dan berhasil melewatinya.",
+                "Menemukan bahwa solusi saya mengandalkan kecermatan dalam memperhatikan hal-hal kecil.",
             ],
+            english_answers: [
+                "Seeing how my plan worked out based on my analysis and calculations.",
+                "Seeing my team work together harmoniously and support each other.",
+                "Knowing I faced a big challenge and overcame it.",
+                "Discovering that my solution relied on attentiveness to small details.",
+            ]
         },
         {
-            question: "Apa yang Anda lakukan ketika menghadapi masalah yang tampaknya tidak ada solusinya?",
-            answers: [
-                "Saya mulai mencari solusi melalui eksperimen atau inovasi baru.",
-                "Saya berbicara dengan orang lain untuk mencari cara bersama yang bisa menyelesaikan masalah.",
-                "Saya akan terus berusaha secara fisik atau mental untuk menemukan cara keluar dari masalah tersebut.",
-                "Saya akan menunggu waktu yang tepat dan mengamati situasi lebih lanjut untuk melihat apakah solusi akan muncul dengan sendirinya.",
+            indonesian_question: "Bagaimana Anda menggambarkan gaya komunikasi Anda?",
+            english_question: "How would you describe your communication style?",
+            indonesian_answers: [
+                "Langsung, terstruktur, dan berdasarkan logika.",
+                "Hangat, penuh empati, dan membangun koneksi.",
+                "Tegas, bersemangat, dan memotivasi.",
+                "Tenang, observatif, dan berdasarkan fakta yang diamati.",
             ],
+            english_answers: [
+                "Direct, structured, and logical.",
+                "Warm, empathetic, and connection-oriented.",
+                "Assertive, energetic, and motivating.",
+                "Calm, observant, and based on observed facts.",
+            ]
         },
         {
-            question: "Apa yang Anda cari dalam sebuah pemimpin?",
-            answers: [
-                "Pemimpin yang dapat merencanakan dan memberi arahan berdasarkan pengetahuan dan logika.",
-                "Pemimpin yang mengutamakan hubungan antar individu dan menjaga semangat tim.",
-                "Pemimpin yang tegas dan siap bertindak, menunjukkan kekuatan dan ketahanan dalam menghadapi krisis.",
-                "Pemimpin yang cermat, dengan kemampuan untuk melihat setiap detail dan merencanakan langkah-langkah strategis.",
+            indonesian_question: "Apa hal pertama yang Anda lakukan ketika memasuki lingkungan baru?",
+            english_question: "What's the first thing you do when entering a new environment?",
+            indonesian_answers: [
+                "Mempelajari sistem dan aturan yang berlaku.",
+                "Membangun hubungan dan memahami orang-orang di sekitar.",
+                "Menguji batasan dan mencoba menantang diri.",
+                "Mengamati dengan teliti sebelum bertindak.",
             ],
+            english_answers: [
+                "Study the systems and rules in place.",
+                "Build relationships and understand the people around.",
+                "Test limits and try to challenge myself.",
+                "Observe carefully before taking action.",
+            ]
         },
         {
-            question: "Jika Anda sedang merencanakan masa depan, faktor apa yang paling mempengaruhi keputusan Anda?",
-            answers: [
-                "Analisis mendalam dan data yang dapat mendukung keputusan saya.",
-                "Kesejahteraan orang-orang di sekitar saya dan rasa kebersamaan dalam komunitas.",
-                "Kekuatan dan kemampuan saya untuk bertahan dan menghadapi tantangan besar.",
-                "Kemampuan untuk melihat peluang yang tersembunyi dan memahami gambaran besar.",
+            indonesian_question: "Apa peran yang biasanya Anda ambil dalam tim?",
+            english_question: "What role do you usually take in a team?",
+            indonesian_answers: [
+                "Perencana dan pemikir strategis.",
+                "Penyemangat dan penjaga keharmonisan tim.",
+                "Pemimpin yang menggerakkan dan memotivasi.",
+                "Pengamat yang memberi masukan tepat waktu.",
             ],
+            english_answers: [
+                "Planner and strategic thinker.",
+                "Encourager and team harmonizer.",
+                "Leader who drives and motivates.",
+                "Observer who provides timely input.",
+            ]
         },
         {
-            question: "Saat Anda merasa tertekan, apa yang Anda lakukan untuk meredakan stres?",
-            answers: [
-                "Saya mencari solusi praktis atau memecahkan masalah yang sedang dihadapi.",
-                "Saya mencari cara untuk berbicara dengan orang lain atau menghabiskan waktu dengan teman-teman untuk merasa lebih baik.",
-                "Saya berusaha untuk tetap aktif dan mengalihkan perhatian saya pada aktivitas fisik atau tantangan baru.",
-                "Saya cenderung menarik diri dan merenung untuk menganalisis situasi secara lebih mendalam.",
+            indonesian_question: "Hal apa yang paling memotivasi Anda untuk terus maju?",
+            english_question: "What motivates you most to keep moving forward?",
+            indonesian_answers: [
+                "Keinginan untuk memahami dan memecahkan sesuatu yang kompleks.",
+                "Kebutuhan untuk mendukung dan merasa terhubung dengan orang lain.",
+                "Dorongan untuk menang, mengatasi tantangan, dan membuktikan diri.",
+                "Keingintahuan terhadap hal-hal yang tersembunyi dan tidak terduga.",
             ],
+            english_answers: [
+                "Desire to understand and solve something complex.",
+                "Need to support and feel connected to others.",
+                "Drive to win, overcome challenges, and prove myself.",
+                "Curiosity about hidden and unexpected things.",
+            ]
         },
         {
-            question: "Saat melihat situasi yang penuh kekacauan, bagaimana reaksi Anda?",
-            answers: [
-                "Saya mencari cara untuk mengatur dan merencanakan langkah-langkah yang dapat dilakukan untuk mengatasi kekacauan tersebut.",
-                "Saya berusaha menjaga hubungan baik dengan semua pihak dan memastikan semua orang merasa stabil.",
-                "Saya mengambil inisiatif untuk bertindak mengendalikan situasi dengan kekuatan dan keputusan yang cepat.",
-                "Saya mengamati dengan seksama, mencoba memahami perubahan yang terjadi dan mencari peluang untuk bertindak.",
+            indonesian_question: "Apa yang Anda lakukan ketika seseorang di sekitar Anda merasa kesulitan?",
+            english_question: "What do you do when someone around you is struggling?",
+            indonesian_answers: [
+                "Memberi saran logis dan membantu mereka menyusun rencana.",
+                "Mendengarkan dengan penuh empati dan memberikan dukungan emosional.",
+                "Menyemangati mereka dan membantu secara aktif menyelesaikan masalah.",
+                "Mengamati situasi dan memberi bantuan yang tepat saat dibutuhkan.",
             ],
+            english_answers: [
+                "Offer logical advice and help them create a plan.",
+                "Listen empathetically and provide emotional support.",
+                "Encourage them and actively help solve the problem.",
+                "Observe the situation and offer the right help when needed.",
+            ]
         },
         {
-            question: "Apakah Anda lebih suka bekerja secara individu atau dalam kelompok?",
-            answers: [
-                "Saya lebih suka bekerja secara individu dan merencanakan dengan rinci sesuai kemampuan saya.",
-                "Saya lebih suka bekerja dalam kelompok dan menjaga hubungan antar anggota agar tetap solid.",
-                "Saya lebih suka mengambil peran aktif dalam kelompok, menunjukkan kepemimpinan, dan bertindak langsung.",
-                "Saya lebih suka bekerja sendiri dengan observasi dan perencanaan yang matang, meskipun masih bisa berkolaborasi jika diperlukan.",
+            indonesian_question: "Bagaimana Anda biasanya menghadapi kegagalan?",
+            english_question: "How do you usually deal with failure?",
+            indonesian_answers: [
+                "Menganalisis kesalahan dan belajar darinya.",
+                "Mencari dukungan emosional dan berbagi perasaan.",
+                "Bangkit kembali dengan semangat dan mencoba lagi lebih kuat.",
+                "Merenung diam-diam dan menyusun strategi baru.",
             ],
+            english_answers: [
+                "Analyze the mistakes and learn from them.",
+                "Seek emotional support and share feelings.",
+                "Bounce back with enthusiasm and try harder.",
+                "Quietly reflect and form a new strategy.",
+            ]
         },
         {
-            question: "Apa yang membuat Anda merasa paling dihargai dalam sebuah tim?",
-            answers: [
-                "Ketika saya dapat memberikan kontribusi intelektual yang signifikan dan merancang solusi yang efektif.",
-                "Ketika saya dapat membangun hubungan yang kuat dan memelihara rasa kebersamaan dalam tim.",
-                "Ketika saya bisa menunjukkan kemampuan fisik atau ketangguhan dalam menghadapi tantangan tim.",
-                "Ketika saya dapat memberikan wawasan strategis dan membantu tim melihat gambaran besar.",
+            indonesian_question: "Hal apa yang membuat Anda merasa paling nyaman saat bekerja?",
+            english_question: "What makes you feel most comfortable at work?",
+            indonesian_answers: [
+                "Adanya struktur, sistem, dan kejelasan peran.",
+                "Lingkungan yang mendukung dan penuh kolaborasi.",
+                "Tantangan yang membuat saya terus berkembang.",
+                "Kebebasan untuk mengamati dan bekerja mandiri.",
             ],
+            english_answers: [
+                "Having structure, systems, and role clarity.",
+                "A supportive and collaborative environment.",
+                "Challenges that push me to grow.",
+                "Freedom to observe and work independently.",
+            ]
         },
         {
-            question: "Bagaimana Anda menggambarkan diri Anda dalam satu kata?",
-            answers: [
-                "Intelek",
-                "Empatik",
-                "Berani",
-                "Pengamat",
+            indonesian_question: "Apa pendekatan Anda terhadap perubahan besar dalam hidup?",
+            english_question: "What is your approach to major life changes?",
+            indonesian_answers: [
+                "Merencanakannya secara matang dan menganalisis semua risiko.",
+                "Berbicara dengan orang terdekat dan mencari dukungan emosional.",
+                "Menghadapinya dengan keberanian dan semangat petualangan.",
+                "Menyesuaikan diri secara perlahan sambil mengamati kondisi sekitar.",
             ],
+            english_answers: [
+                "Plan it thoroughly and analyze all risks.",
+                "Talk to close people and seek emotional support.",
+                "Face it with courage and a sense of adventure.",
+                "Adapt slowly while observing the surroundings.",
+            ]
         },
-    ]
-
+        {
+            indonesian_question: "Apa yang biasanya Anda lakukan setelah mencapai suatu keberhasilan?",
+            english_question: "What do you usually do after achieving a success?",
+            indonesian_answers: [
+                "Mengevaluasi proses dan mencari cara untuk lebih baik lagi.",
+                "Berbagi kebahagiaan bersama orang-orang terdekat.",
+                "Merayakan kemenangan dan bersiap untuk tantangan berikutnya.",
+                "Merefleksikan perjalanan dan memikirkan pelajaran yang didapat.",
+            ],
+            english_answers: [
+                "Evaluate the process and find ways to improve.",
+                "Share the happiness with close people.",
+                "Celebrate the victory and prepare for the next challenge.",
+                "Reflect on the journey and think about the lessons learned.",
+            ]
+        }
+    ];
+      
     const handleAnswerChange = (selectedOption: string) => {
         const newAnswers = [...answers]
         newAnswers[counter] = selectedOption
@@ -212,11 +355,11 @@ export default function ClanTestPage(){
                 />
             </div>
 
-            <QuestionBox question={questions[counter].question} />
+            <QuestionBox question={language === 'en' ? questions[counter].english_question : questions[counter].indonesian_question} />
 
             <div className="flex flex-col items-center mt-12">
                 <MultipleChoice 
-                    options={questions[counter].answers}
+                    options={language === 'en' ? questions[counter].english_answers : questions[counter].indonesian_answers}
                     onChange={handleAnswerChange}
                     selectedOption={answers[counter]}
                 />

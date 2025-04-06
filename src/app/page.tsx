@@ -1,15 +1,19 @@
 "use client"
 
 import CustomButton from "@/components/CustomButton";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useLanguage } from "@/context/languageContext";
 import { Birthstone, Press_Start_2P } from "next/font/google";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
 
 const birthstone = Birthstone({ subsets: ["latin"], weight: ['400'] });
 const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] });
 
 export default function LandingPage() {
     const router = useRouter();
+    const {language, setLanguage} = useLanguage()
     
     return (
         <div
@@ -22,29 +26,37 @@ export default function LandingPage() {
                     alt="resonate logo"
                     width={800}
                     height={300}
-                    className="relative z-10 w-full max-w-[600px] h-auto"
+                    className="relative z-10 w-full max-w-[720px] h-auto"
                 />
             </div>
-
             <div className="flex flex-col items-center">
+                <Image
+                    src={'/jc-logo.png'}
+                    alt="jc logo"
+                    width={80}
+                    height={80}
+                    className="relative z-10 w-full max-w-[70px] h-auto mb-10"
+                />
                 <div className="flex flex-col items-center">
-                    <h1 className="font-horizon animated-white-glow text-white text-4xl sm:text-5xl md:text-6xl mb-[-20px] sm:mb-[-30px] md:mb-[-40px]">
-                        FIND YOUR
+                    <h1 className="font-horizon animated-white-glow text-white text-2xl sm:text-3xl md:text-4xl mb-[-20px] sm:mb-[-30px] md:mb-[-40px] z-10">
+                        {language === 'en' ? 'WHICH CLAN' : 'TEMUKAN'}
                     </h1>
                     <h2 className={`${birthstone.className} text-6xl text-white sm:text-7xl md:text-8xl lg:text-9xl animated-pink-glow rotate-[-6deg]`}>
-                        Clan
+                        {language === 'en' ? 'are you?' : 'clan-mu?'}
                     </h2>
                 </div>
-                <p className={`${PressStart2P.className} text-xs text-white sm:text-sm md:text-base lg:text-lg w-full max-w-[600px] text-center mb-6 px-4`}>
+                <p className={`${PressStart2P.className} text-xs text-white sm:text-sm md:text-base lg:text-lg w-full max-w-[600px] text-center mt-12 mb-6 px-4`}>
                     Hey, Resonians!
                     <br />
-                    Find the right clan for you now!
+                    {language === 'en' ? 'Find the right clan for you now!' : 'Temukan clan yang cocok denganmu!'}
                 </p>
                 <CustomButton
                     onClick={() => {router.push('/clan-test')}}
+                    className="mb-9"
                 >
-                    Begin Test
+                    {language === 'en' ? 'Begin Test' : 'Mulai Tes'}
                 </CustomButton>
+                <LanguageSwitcher />
             </div>
         </div>
     );
