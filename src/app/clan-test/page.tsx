@@ -12,7 +12,7 @@ export default function ClanTestPage(){
     const [counter, setCounter] = useState(0)
     const [answers, setAnswers] = useState<string[]>(Array(20).fill(""))
 
-    const {language, setLanguage} = useLanguage()
+    const {language} = useLanguage()
 
     const questions = [
         {

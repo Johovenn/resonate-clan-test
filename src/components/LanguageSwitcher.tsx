@@ -1,6 +1,5 @@
 import { useLanguage } from "@/context/languageContext";
 import Image from "next/image";
-import clsx from "clsx";
 import { cn } from "@/lib/utils";
 
 export default function LanguageSwitcher() {

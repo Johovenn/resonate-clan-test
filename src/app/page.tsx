@@ -6,14 +6,13 @@ import { useLanguage } from "@/context/languageContext";
 import { Birthstone, Press_Start_2P } from "next/font/google";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
 
 const birthstone = Birthstone({ subsets: ["latin"], weight: ['400'] });
 const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] });
 
 export default function LandingPage() {
     const router = useRouter();
-    const {language, setLanguage} = useLanguage()
+    const {language} = useLanguage()
     
     return (
         <div
