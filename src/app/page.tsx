@@ -6,6 +6,7 @@ import { useLanguage } from "@/context/languageContext";
 import { Birthstone, Press_Start_2P } from "next/font/google";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const birthstone = Birthstone({ subsets: ["latin"], weight: ['400'] });
 const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] });
@@ -13,6 +14,13 @@ const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] });
 export default function LandingPage() {
     const router = useRouter();
     const {language} = useLanguage()
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) return null
     
     return (
         <div
@@ -41,7 +49,7 @@ export default function LandingPage() {
                         {language === 'en' ? 'WHICH CLAN' : 'TEMUKAN'}
                     </h1>
                     <h2 className={`${birthstone.className} text-6xl text-white sm:text-7xl md:text-8xl lg:text-9xl animated-pink-glow rotate-[-6deg]`}>
-                        {language === 'en' ? 'are you?' : 'clan-mu?'}
+                        {language === 'en' ? 'are you?' : 'clan-mu!'}
                     </h2>
                 </div>
                 <p className={`${PressStart2P.className} text-xs text-white sm:text-sm md:text-base lg:text-lg w-full max-w-[600px] text-center mt-12 mb-6 px-4`}>

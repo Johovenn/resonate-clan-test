@@ -6,11 +6,16 @@ import ProgressBar from "@/components/ProgressBar"
 import QuestionBox from "@/components/QuestionBox"
 import { useLanguage } from "@/context/languageContext"
 import { ArrowLeft, ArrowRight } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 export default function ClanTestPage(){
     const [counter, setCounter] = useState(0)
     const [answers, setAnswers] = useState<string[]>(Array(20).fill(""))
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     const {language} = useLanguage()
 
@@ -342,32 +347,63 @@ export default function ClanTestPage(){
         newAnswers[counter] = selectedOption
         setAnswers(newAnswers)
     }
+
+    function shuffleArray(array: string[]) {
+        const shuffled = [...array]
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1))
+            ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+        }
+        return shuffled
+    }
+    
+    const currentAnswers = useMemo(() => {
+        const rawAnswers = language === 'en'
+            ? questions[counter].english_answers
+            : questions[counter].indonesian_answers
+    
+        return shuffleArray(rawAnswers)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [counter, language])
+
+    if (!isClient) return null
     
     return(
         <div
             className="h-screen w-screen flex flex-col items-center bg-cover bg-center px-4 py-8"
             style={{ backgroundImage: "url('/background.png')" }}
         >
-            <div className="relative w-[900px] mb-12">
-                <ProgressBar 
-                    currentProgress={counter + 1}
-                    total={20}
-                />
-            </div>
-
             <QuestionBox question={language === 'en' ? questions[counter].english_question : questions[counter].indonesian_question} />
 
             <div className="flex flex-col items-center mt-12">
                 <MultipleChoice 
-                    options={language === 'en' ? questions[counter].english_answers : questions[counter].indonesian_answers}
+                    options={currentAnswers}
                     onChange={handleAnswerChange}
                     selectedOption={answers[counter]}
                 />
             </div>
             
-            <div className="space-x-5">
-                <CustomButton onClick={() => setCounter(counter - 1)} disabled={counter === 0}><ArrowLeft/></CustomButton>
-                <CustomButton onClick={() => setCounter(counter + 1)} disabled={counter === 19}><ArrowRight/></CustomButton>
+            <div className="space-x-5 flex items-center">
+                <CustomButton 
+                    onClick={() => setCounter(counter - 1)} 
+                    disabled={counter === 0}
+                    className="flex items-center gap-3"
+                >
+                    <ArrowLeft/>
+                    {/* {language === 'en' ? 'Previous Question' : 'Pertanyaan Sebelumnya'} */}
+                </CustomButton>
+                <ProgressBar 
+                    currentProgress={counter + 1}
+                    total={20}
+                />
+                <CustomButton 
+                    onClick={() => setCounter(counter + 1)} 
+                    disabled={counter === 19}
+                    className="flex items-center gap-3"
+                >
+                    {/* {language === 'en' ? 'Next Question' : 'Pertanyaan Selanjutnya'} */}
+                    <ArrowRight/>
+                </CustomButton>
             </div>
         </div>
     )
