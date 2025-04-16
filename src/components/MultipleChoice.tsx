@@ -20,14 +20,16 @@ export default function MultipleChoice(props: MultipleChoiceProps) {
     };
 
     return (
-        <div className="w-full mb-6 overflow-x-auto">
+        <div className="w-full mb-6 overflow-visible">
             <RadioGroup onValueChange={handleOptionChange} value={props.selectedOption || ""}>
-                <div className="flex gap-6 w-fit">
+                <div className="flex gap-6 w-fit mx-auto py-4">
                     {props.options.map((option, index) => (
                         <div
                             key={index}
-                            className="relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 w-90 h-90 shrink-0 bg-cover bg-center"
-                            // style={{backgroundImage: "url('/choice-frame.png')"}}
+                            className={clsx(
+                                "relative rounded-lg overflow-hidden cursor-pointer transition-all duration-700 w-90 h-90 shrink-0 bg-cover bg-center",
+                                props.selectedOption === option ? "scale-125" : "scale-100"
+                            )}
                             onClick={() => handleOptionChange(option)}
                         >
                             <Image
@@ -36,13 +38,6 @@ export default function MultipleChoice(props: MultipleChoiceProps) {
                                 width={100}
                                 height={100}
                                 className="absolute object-cover w-full"
-                            />
-
-                            <div
-                                className={clsx(
-                                    "absolute inset-0 z-0 transition-all duration-300 p-10",
-                                    props.selectedOption === option && "bg-purple-600/50"
-                                )}
                             />
                             
                             <div className="relative z-10 w-full h-full flex justify-center items-center text-center">
