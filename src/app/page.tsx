@@ -2,6 +2,7 @@
 
 import CustomButton from "@/components/CustomButton";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useClanResult } from "@/context/clanResultContext";
 import { useLanguage } from "@/context/languageContext";
 import { Birthstone, Press_Start_2P } from "next/font/google";
 import Image from "next/image";
@@ -14,6 +15,7 @@ const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] });
 export default function LandingPage() {
     const router = useRouter();
     const {language} = useLanguage()
+    const {clanResult} = useClanResult()
     const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
@@ -53,7 +55,7 @@ export default function LandingPage() {
                     </h2>
                 </div>
                 <p className={`${PressStart2P.className} text-xs text-white sm:text-sm md:text-base lg:text-lg w-full max-w-[600px] text-center mt-12 mb-6 px-4`}>
-                    Hey, Resonians!
+                    Hey, Resonians! {clanResult}
                     <br />
                     {language === 'en' ? 'Find the right clan for you now!' : 'Temukan clan yang cocok denganmu!'}
                 </p>

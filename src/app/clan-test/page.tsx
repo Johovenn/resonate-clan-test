@@ -4,38 +4,40 @@ import CustomButton from "@/components/CustomButton"
 import MultipleChoice from "@/components/MultipleChoice"
 import ProgressBar from "@/components/ProgressBar"
 import QuestionBox from "@/components/QuestionBox"
+import { useClanResult } from "@/context/clanResultContext"
 import { useLanguage } from "@/context/languageContext"
-import { ArrowLeft, ArrowRight } from "lucide-react"
-import { useEffect, useMemo, useState } from "react"
+import { ChevronsLeft, ChevronsRight } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+
+const clans = {
+    Neuro: 'Neuro',    // For index 0 answers
+    Philos: 'Philos',  // For index 1 answers 
+    Forte: 'Forte', // For index 2 answers
+    Oculus: 'Oculus',  // For index 3 answers
+}
 
 export default function ClanTestPage(){
+    const router = useRouter()
     const [counter, setCounter] = useState(0)
     const [answers, setAnswers] = useState<string[]>(Array(20).fill(""))
-    const [isClient, setIsClient] = useState(false);
+    const [isClient, setIsClient] = useState(false)
+    const [clanScores, setClanScores] = useState({
+        [clans.Neuro]: 0,
+        [clans.Philos]: 0,
+        [clans.Forte]: 0,
+        [clans.Oculus]: 0
+    })
+    const [isAllAnswered, setIsAllAnswered] = useState(false)
 
     useEffect(() => {
-        setIsClient(true);
-    }, []);
+        setIsClient(true)
+    }, [])
 
     const {language} = useLanguage()
+    const {clanResult, setClanResult} = useClanResult()
 
     const questions = [
-        {
-            indonesian_question: "Saat menghadapi masalah besar, pendekatan apa yang paling sering Anda pilih?",
-            english_question: "When facing a major problem, which approach do you most often choose?",
-            indonesian_answers: [
-                "Menggunakan logika dan analisis untuk memecahkan masalah secara mendalam dan terstruktur.",
-                "Berkolaborasi dengan orang lain untuk mencari solusi yang bisa mempersatukan berbagai perspektif.",
-                "Menghadapi tantangan secara langsung dengan kekuatan fisik atau keberanian untuk menyelesaikannya.",
-                "Menganalisis situasi dengan cermat dan mencari cara untuk memanfaatkan setiap detail kecil yang mungkin terlewatkan.",
-            ],
-            english_answers: [
-                "Using logic and analysis to solve the problem thoroughly and systematically.",
-                "Collaborating with others to find a solution that unites different perspectives.",
-                "Facing the challenge head-on with physical strength or courage to overcome it.",
-                "Carefully analyzing the situation and finding ways to leverage every small overlooked detail.",
-            ],
-        },
         {
             indonesian_question: "Apa yang paling Anda hargai dalam hubungan antar individu?",
             english_question: "What do you value most in interpersonal relationships?",
@@ -51,320 +53,279 @@ export default function ClanTestPage(){
                 "Courage and decisiveness in facing challenges together.",
                 "Trust built through observation and accurate judgment.",
             ],
+            clan_mapping: [
+                clans.Neuro, 
+                clans.Philos, 
+                clans.Forte, 
+                clans.Oculus,
+            ]
         },
         {
             indonesian_question: "Jika Anda diminta untuk memimpin sebuah tim dalam suatu proyek besar, apa yang akan Anda lakukan terlebih dahulu?",
             english_question: "If you were asked to lead a team in a major project, what would you do first?",
             indonesian_answers: [
-                "Mengumpulkan informasi dan merancang rencana yang sangat rinci untuk memastikan proyek berjalan lancar.",
                 "Memastikan semua anggota tim merasa dihargai dan membangun hubungan kuat di antara mereka.",
-                "Memberikan instruksi jelas dan memastikan tim siap secara fisik dan mental untuk menghadapi tugas.",
+                "Mengumpulkan informasi dan merancang rencana yang sangat rinci untuk memastikan proyek berjalan lancar.",
                 "Mengamati kondisi dan mencari tahu potensi masalah atau kekuatan yang tersembunyi dalam tim.",
+                "Memberikan instruksi jelas dan memastikan tim siap secara fisik dan mental untuk menghadapi tugas.",
             ],
             english_answers: [
-                "Gather information and design a very detailed plan to ensure the project runs smoothly.",
                 "Ensure all team members feel valued and build strong relationships among them.",
-                "Give clear instructions and ensure the team is physically and mentally ready for the task.",
+                "Gather information and design a very detailed plan to ensure the project runs smoothly.",
                 "Observe the conditions and identify potential hidden problems or strengths within the team.",
+                "Give clear instructions and ensure the team is physically and mentally ready for the task.",
             ],
+            clan_mapping: [
+                clans.Philos, 
+                clans.Neuro, 
+                clans.Oculus,
+                clans.Forte, 
+            ]
         },
         {
             indonesian_question: "Bagaimana Anda mendekati pembelajaran atau pemecahan masalah baru?",
             english_question: "How do you approach learning or solving a new problem?",
             indonesian_answers: [
-                "Dengan menggali informasi lebih dalam, menganalisis data dan fakta yang ada.",
-                "Dengan berdiskusi dan berkolaborasi dengan orang lain untuk melihat berbagai sudut pandang.",
                 "Dengan menghadapi tantangan tersebut secara langsung dan belajar dari pengalaman praktis.",
+                "Dengan berdiskusi dan berkolaborasi dengan orang lain untuk melihat berbagai sudut pandang.",
                 "Dengan memantau dan mengamati setiap detail, memetakan potensi masalah, dan mencari cara untuk memanfaatkan kelebihan yang ada.",
+                "Dengan menggali informasi lebih dalam, menganalisis data dan fakta yang ada.",
             ],
             english_answers: [
-                "By diving deeper into information, analyzing available data and facts.",
-                "By discussing and collaborating with others to view different perspectives.",
                 "By facing the challenge directly and learning through practical experience.",
+                "By discussing and collaborating with others to view different perspectives.",
                 "By monitoring and observing every detail, mapping potential issues, and finding ways to utilize existing strengths.",
+                "By diving deeper into information, analyzing available data and facts.",
             ],
-        },
-        {
-            indonesian_question: "Saat Anda berhadapan dengan situasi penuh tekanan, bagaimana Anda merespons?",
-            english_question: "When you face a high-pressure situation, how do you respond?",
-            indonesian_answers: [
-                "Menggunakan strategi dan perencanaan untuk memastikan saya tetap fokus dan mengatasi setiap masalah satu per satu.",
-                "Mencari cara untuk menjaga hubungan baik dan membuat tim merasa tenang serta bersatu.",
-                "Mengandalkan kekuatan dan ketahanan fisik untuk tetap bertahan dan menyelesaikan tugas.",
-                "Menggunakan pengamatan tajam saya untuk melihat ancaman yang tidak terlihat dan mengatur langkah yang tepat.",
-            ],
-            english_answers: [
-                "Using strategy and planning to stay focused and tackle each issue one by one.",
-                "Finding ways to maintain good relationships and keep the team calm and united.",
-                "Relying on strength and physical endurance to push through and complete the task.",
-                "Using sharp observation to spot hidden threats and plan the right course of action.",
-            ],
-        },
-        {
-            indonesian_question: "Apa yang paling Anda nikmati dalam pekerjaan atau aktivitas sehari-hari Anda?",
-            english_question: "What do you enjoy most in your work or daily activities?",
-            indonesian_answers: [
-                "Menghadapi tantangan intelektual dan memecahkan masalah yang membutuhkan pengetahuan mendalam.",
-                "Membangun hubungan yang berarti dan menciptakan rasa kebersamaan dengan orang lain.",
-                "Menghadapi tantangan fisik dan menggunakan kekuatan tubuh untuk mencapai tujuan.",
-                "Mengamati dan merencanakan dengan ketelitian, mencari tahu apa yang tersembunyi atau yang bisa diperbaiki.",
-            ],
-            english_answers: [
-                "Facing intellectual challenges and solving problems that require deep knowledge.",
-                "Building meaningful relationships and creating a sense of togetherness with others.",
-                "Facing physical challenges and using body strength to achieve goals.",
-                "Observing and planning carefully, identifying what's hidden or can be improved.",
-            ],
-        },
-        {
-            indonesian_question: "Apa yang menurut Anda penting dalam sebuah kemenangan?",
-            english_question: "What do you consider important in a victory?",
-            indonesian_answers: [
-                "Kemenangan yang diperoleh melalui kecerdasan dan perencanaan yang matang.",
-                "Kemenangan yang diperoleh dengan menjaga solidaritas dan rasa kebersamaan dalam tim.",
-                "Kemenangan yang diperoleh melalui kekuatan fisik dan keteguhan hati dalam bertarung.",
-                "Kemenangan yang diperoleh melalui ketajaman indra dan kemampuan untuk melihat peluang yang tersembunyi.",
-            ],
-            english_answers: [
-                "Victory gained through intelligence and well-thought-out planning.",
-                "Victory achieved by maintaining solidarity and a sense of togetherness in the team.",
-                "Victory achieved through physical strength and mental resilience in battle.",
-                "Victory earned through sharp senses and the ability to spot hidden opportunities.",
-            ],
+            clan_mapping: [
+                clans.Forte, 
+                clans.Philos, 
+                clans.Oculus,
+                clans.Neuro, 
+            ]
         },
         {
             indonesian_question: "Ketika menghadapi ketidakpastian, bagaimana Anda menghadapinya?",
             english_question: "When facing uncertainty, how do you deal with it?",
             indonesian_answers: [
-                "Mengumpulkan data dan informasi sebanyak mungkin untuk merencanakan langkah berikutnya.",
                 "Berbicara dengan orang lain untuk menjaga semangat dan memastikan semua orang tetap merasa terhubung.",
                 "Menghadapi ketidakpastian dengan keyakinan dan keberanian untuk bertindak meski belum pasti.",
+                "Mengumpulkan data dan informasi sebanyak mungkin untuk merencanakan langkah berikutnya.",
                 "Menganalisis situasi dengan seksama dan menunggu momen yang tepat untuk bertindak.",
             ],
             english_answers: [
-                "Gather as much data and information as possible to plan the next steps.",
                 "Talk to others to stay motivated and ensure everyone feels connected.",
                 "Face uncertainty with confidence and courage to act despite not knowing the outcome.",
+                "Gather as much data and information as possible to plan the next steps.",
                 "Analyze the situation carefully and wait for the right moment to act.",
             ],
-        },
-        {
-            indonesian_question: "Bagaimana Anda menghadapi tantangan besar yang tiba-tiba muncul?",
-            english_question: "How do you handle a sudden major challenge?",
-            indonesian_answers: [
-                "Saya mulai merencanakan langkah-langkah yang logis dan terperinci untuk mengatasi masalah tersebut.",
-                "Saya berusaha mencari dukungan dari orang lain dan bekerja sama untuk menyelesaikannya.",
-                "Saya langsung bertindak dan mencari solusi dengan kekuatan fisik atau ketegasan.",
-                "Saya mengamati situasi dengan cermat, mencari peluang atau celah yang mungkin ada untuk mengatasi masalah.",
-            ],
-            english_answers: [
-                "I start planning logical and detailed steps to solve the problem.",
-                "I try to get support from others and work together to solve it.",
-                "I act immediately and find solutions using physical strength or firmness.",
-                "I observe the situation carefully and look for opportunities or gaps to overcome the issue.",
-            ],
-        },
-        {
-            indonesian_question: "Saat berada di sebuah kelompok, apa peran yang biasanya Anda ambil?",
-            english_question: "When you're in a group, what role do you usually take?",
-            indonesian_answers: [
-                "Saya sering menjadi orang yang merencanakan dan memberi arahan berdasarkan analisis saya.",
-                "Saya berusaha untuk menjaga keharmonisan dan memastikan semua orang merasa nyaman dan dihargai.",
-                "Saya cenderung menjadi orang yang langsung bertindak dan memastikan tugas terlaksana dengan baik.",
-                "Saya lebih suka mengamati dan mencari celah strategis untuk memperbaiki atau meningkatkan keadaan.",
-            ],
-            english_answers: [
-                "I'm usually the one who plans and gives direction based on my analysis.",
-                "I try to maintain harmony and make sure everyone feels comfortable and appreciated.",
-                "I'm the type to take direct action and ensure the task gets done well.",
-                "I prefer to observe and look for strategic gaps to improve or enhance the situation.",
-            ],
-        },
-        {
-            indonesian_question: "Apa yang membuat Anda merasa paling puas setelah menyelesaikan sebuah proyek?",
-            english_question: "What makes you feel most satisfied after completing a project?",
-            indonesian_answers: [
-                "Melihat bagaimana rencana saya berjalan sesuai analisis dan perhitungan.",
-                "Melihat tim saya bekerja bersama dengan harmonis dan saling mendukung.",
-                "Mengetahui bahwa saya menghadapi tantangan besar dan berhasil melewatinya.",
-                "Menemukan bahwa solusi saya mengandalkan kecermatan dalam memperhatikan hal-hal kecil.",
-            ],
-            english_answers: [
-                "Seeing how my plan worked out based on my analysis and calculations.",
-                "Seeing my team work together harmoniously and support each other.",
-                "Knowing I faced a big challenge and overcame it.",
-                "Discovering that my solution relied on attentiveness to small details.",
+            clan_mapping: [
+                clans.Philos, 
+                clans.Forte, 
+                clans.Neuro, 
+                clans.Oculus,
             ]
         },
         {
-            indonesian_question: "Bagaimana Anda menggambarkan gaya komunikasi Anda?",
-            english_question: "How would you describe your communication style?",
+            indonesian_question: "Dalam hal pengambilan keputusan, apa yang paling penting bagi-mu?",
+            english_question: "What matters the most to you when making a decision?",
             indonesian_answers: [
-                "Langsung, terstruktur, dan berdasarkan logika.",
-                "Hangat, penuh empati, dan membangun koneksi.",
-                "Tegas, bersemangat, dan memotivasi.",
-                "Tenang, observatif, dan berdasarkan fakta yang diamati.",
+                "Keputusan yang didasarkan pada pengamatan mendalam dan pemahaman terhadap situasi yang lebih luas.",
+                "Keputusan yang mempertimbangkan hubungan antar individu dan dampaknya terhadap komunitas.",
+                "Keputusan yang berbasis logika, bukti, dan analisis yang mendalam.",
+                "Keputusan yang memberikan hasil cepat dan mengandalkan kekuatan untuk mencapai tujuan.",
             ],
             english_answers: [
-                "Direct, structured, and logical.",
-                "Warm, empathetic, and connection-oriented.",
-                "Assertive, energetic, and motivating.",
-                "Calm, observant, and based on observed facts.",
+                "Decisions based on deep observation and understanding of the broader situation.",
+                "Decisions that consider interpersonal relationships and their impact on the community.",
+                "Decisions based on logic, evidence, and in-depth analysis.",
+                "Decisions that deliver quick results and rely on strength to achieve goals.",
+            ],
+            clan_mapping: [
+                clans.Oculus,
+                clans.Philos, 
+                clans.Neuro, 
+                clans.Forte, 
             ]
         },
         {
-            indonesian_question: "Apa hal pertama yang Anda lakukan ketika memasuki lingkungan baru?",
-            english_question: "What's the first thing you do when entering a new environment?",
+            indonesian_question: "Apa yang kamu cari dari seorang pemimpin?",
+            english_question: "What do you look for in a leader?",
             indonesian_answers: [
-                "Mempelajari sistem dan aturan yang berlaku.",
-                "Membangun hubungan dan memahami orang-orang di sekitar.",
-                "Menguji batasan dan mencoba menantang diri.",
-                "Mengamati dengan teliti sebelum bertindak.",
+                "Pemimpin yang dapat merencanakan dan memberi arahan berdasarkan pengetahuan dan logika.",
+                "Pemimpin yang tegas dan siap bertindak, menunjukkan kekuatan dan ketahanan dalam menghadapi krisis.",
+                "Pemimpin yang cermat, dengan kemampuan untuk melihat setiap detail dan merencanakan langkah-langkah strategis.",
+                "Pemimpin yang mengutamakan hubungan antar individu dan menjaga semangat tim.",
             ],
             english_answers: [
-                "Study the systems and rules in place.",
-                "Build relationships and understand the people around.",
-                "Test limits and try to challenge myself.",
-                "Observe carefully before taking action.",
+                "A leader who can plan and provide direction based on knowledge and logic.",
+                "A decisive leader who is ready to act, demonstrating strength and resilience in facing crises.",
+                "A meticulous leader with the ability to see every detail and plan strategic steps.",
+                "A leader who prioritizes interpersonal relationships and maintains team spirit.",
+            ],
+            clan_mapping: [
+                clans.Neuro, 
+                clans.Forte, 
+                clans.Philos, 
+                clans.Oculus,
             ]
         },
         {
-            indonesian_question: "Apa peran yang biasanya Anda ambil dalam tim?",
-            english_question: "What role do you usually take in a team?",
+            indonesian_question: "Jika kamu sedang merencanakan masa depan, faktor apa yang paling mempengaruhi keputusan-mu?",
+            english_question: "When planning for the future, what factor influences your decisions the most?",
             indonesian_answers: [
-                "Perencana dan pemikir strategis.",
-                "Penyemangat dan penjaga keharmonisan tim.",
-                "Pemimpin yang menggerakkan dan memotivasi.",
-                "Pengamat yang memberi masukan tepat waktu.",
+                "Kekuatan dan kemampuan saya untuk bertahan dan menghadapi tantangan besar.",
+                "Kesejahteraan orang-orang di sekitar saya dan rasa kebersamaan dalam komunitas.",
+                "Kemampuan untuk melihat peluang yang tersembunyi dan memahami gambaran besar.",
+                "Analisis mendalam dan data yang dapat mendukung keputusan saya.",
             ],
             english_answers: [
-                "Planner and strategic thinker.",
-                "Encourager and team harmonizer.",
-                "Leader who drives and motivates.",
-                "Observer who provides timely input.",
+                "My strength and ability to endure and face major challenges.",
+                "The well-being of those around me and a sense of togetherness in the community.",
+                "The ability to see hidden opportunities and understand the bigger picture.",
+                "In-depth analysis and data that can support my decisions.",
+            ],
+            clan_mapping: [
+                clans.Forte, 
+                clans.Philos, 
+                clans.Oculus,
+                clans.Neuro, 
             ]
         },
         {
-            indonesian_question: "Hal apa yang paling memotivasi Anda untuk terus maju?",
-            english_question: "What motivates you most to keep moving forward?",
+            indonesian_question: "Saat melihat situasi yang penuh kekacauan, bagaimana reaksimu?",
+            english_question: "When you are in a chaotic situation, how do you react?",
             indonesian_answers: [
-                "Keinginan untuk memahami dan memecahkan sesuatu yang kompleks.",
-                "Kebutuhan untuk mendukung dan merasa terhubung dengan orang lain.",
-                "Dorongan untuk menang, mengatasi tantangan, dan membuktikan diri.",
-                "Keingintahuan terhadap hal-hal yang tersembunyi dan tidak terduga.",
+                "Saya mencari cara untuk mengatur dan merencanakan langkah-langkah yang dapat dilakukan untuk mengatasi kekacauan tersebut.",
+                "Saya mengambil inisiatif untuk bertindak mengendalikan situasi dengan kekuatan dan keputusan yang cepat.",
+                "Saya berusaha menjaga hubungan baik dengan semua pihak dan memastikan semua orang merasa stabil.",
+                "Saya mengamati dengan seksama, mencoba memahami perubahan yang terjadi dan mencari peluang untuk bertindak.",
             ],
             english_answers: [
-                "Desire to understand and solve something complex.",
-                "Need to support and feel connected to others.",
-                "Drive to win, overcome challenges, and prove myself.",
-                "Curiosity about hidden and unexpected things.",
+                "I look for ways to organize and plan steps that can be taken to overcome the chaos.",
+                "I take the initiative to act, controlling the situation with strength and quick decisions.",
+                "I try to maintain good relationships with everyone and ensure that everyone feels stable.",
+                "I observe carefully, trying to understand the changes happening and look for opportunities to act.",
+            ],
+            clan_mapping: [
+                clans.Neuro, 
+                clans.Forte, 
+                clans.Philos, 
+                clans.Oculus,
+            ],
+        },
+        {
+            indonesian_question: " Apakah kamu lebih suka bekerja secara individu atau dalam kelompok?",
+            english_question: "Do you prefer to work individually or in a group",
+            indonesian_answers: [
+                "Saya lebih suka bekerja dalam kelompok dan menjaga hubungan antar anggota agar tetap solid.",
+                "Saya lebih suka bekerja sendiri dengan observasi dan perencanaan yang matang, meskipun masih bisa berkolaborasi jika diperlukan.",
+                "Saya lebih suka mengambil peran aktif dalam kelompok, menunjukkan kepemimpinan, dan bertindak langsung.",
+                "Saya lebih suka bekerja secara individu dan merencanakan dengan rinci sesuai kemampuan saya.",
+            ],
+            english_answers: [
+                "I prefer to work in a group and maintain strong relationships among team members.",
+                "I prefer to work alone with thorough observation and planning, although I can still collaborate if needed.",
+                "I prefer to take an active role in the group, showing leadership and taking direct action.",
+                "I prefer to work individually and plan in detail according to my abilities.",
+            ],
+            clan_mapping: [
+                clans.Philos, 
+                clans.Oculus,
+                clans.Forte, 
+                clans.Neuro, 
             ]
         },
         {
-            indonesian_question: "Apa yang Anda lakukan ketika seseorang di sekitar Anda merasa kesulitan?",
+            indonesian_question: "Bagaimana kamu menggambarkan dirimu dalam satu kata?",
             english_question: "What do you do when someone around you is struggling?",
             indonesian_answers: [
-                "Memberi saran logis dan membantu mereka menyusun rencana.",
-                "Mendengarkan dengan penuh empati dan memberikan dukungan emosional.",
-                "Menyemangati mereka dan membantu secara aktif menyelesaikan masalah.",
-                "Mengamati situasi dan memberi bantuan yang tepat saat dibutuhkan.",
+                "Pengamat, Saya cermat dalam melihat setiap detail dan merencanakan strategi.",
+                "Empatik, Saya peduli dengan hubungan emosional dan saling mendukung.",
+                "Tangguh, Saya kuat dan berani menghadapi tantangan.",
+                "Intelek, Saya lebih fokus pada pemikiran mendalam dan analisis",
             ],
             english_answers: [
-                "Offer logical advice and help them create a plan.",
-                "Listen empathetically and provide emotional support.",
-                "Encourage them and actively help solve the problem.",
-                "Observe the situation and offer the right help when needed.",
+                "Observant, I am meticulous in noticing every detail and planning strategies.",
+                "Empathetic, I care about emotional connections and mutual support.",
+                "Resilient, I am strong and courageous in facing challenges.",
+                "Intellectual, I focus more on deep thinking and analysis.",
+            ],
+            clan_mapping: [
+                clans.Oculus,
+                clans.Philos, 
+                clans.Forte, 
+                clans.Neuro, 
             ]
         },
-        {
-            indonesian_question: "Bagaimana Anda biasanya menghadapi kegagalan?",
-            english_question: "How do you usually deal with failure?",
-            indonesian_answers: [
-                "Menganalisis kesalahan dan belajar darinya.",
-                "Mencari dukungan emosional dan berbagi perasaan.",
-                "Bangkit kembali dengan semangat dan mencoba lagi lebih kuat.",
-                "Merenung diam-diam dan menyusun strategi baru.",
-            ],
-            english_answers: [
-                "Analyze the mistakes and learn from them.",
-                "Seek emotional support and share feelings.",
-                "Bounce back with enthusiasm and try harder.",
-                "Quietly reflect and form a new strategy.",
-            ]
-        },
-        {
-            indonesian_question: "Hal apa yang membuat Anda merasa paling nyaman saat bekerja?",
-            english_question: "What makes you feel most comfortable at work?",
-            indonesian_answers: [
-                "Adanya struktur, sistem, dan kejelasan peran.",
-                "Lingkungan yang mendukung dan penuh kolaborasi.",
-                "Tantangan yang membuat saya terus berkembang.",
-                "Kebebasan untuk mengamati dan bekerja mandiri.",
-            ],
-            english_answers: [
-                "Having structure, systems, and role clarity.",
-                "A supportive and collaborative environment.",
-                "Challenges that push me to grow.",
-                "Freedom to observe and work independently.",
-            ]
-        },
-        {
-            indonesian_question: "Apa pendekatan Anda terhadap perubahan besar dalam hidup?",
-            english_question: "What is your approach to major life changes?",
-            indonesian_answers: [
-                "Merencanakannya secara matang dan menganalisis semua risiko.",
-                "Berbicara dengan orang terdekat dan mencari dukungan emosional.",
-                "Menghadapinya dengan keberanian dan semangat petualangan.",
-                "Menyesuaikan diri secara perlahan sambil mengamati kondisi sekitar.",
-            ],
-            english_answers: [
-                "Plan it thoroughly and analyze all risks.",
-                "Talk to close people and seek emotional support.",
-                "Face it with courage and a sense of adventure.",
-                "Adapt slowly while observing the surroundings.",
-            ]
-        },
-        {
-            indonesian_question: "Apa yang biasanya Anda lakukan setelah mencapai suatu keberhasilan?",
-            english_question: "What do you usually do after achieving a success?",
-            indonesian_answers: [
-                "Mengevaluasi proses dan mencari cara untuk lebih baik lagi.",
-                "Berbagi kebahagiaan bersama orang-orang terdekat.",
-                "Merayakan kemenangan dan bersiap untuk tantangan berikutnya.",
-                "Merefleksikan perjalanan dan memikirkan pelajaran yang didapat.",
-            ],
-            english_answers: [
-                "Evaluate the process and find ways to improve.",
-                "Share the happiness with close people.",
-                "Celebrate the victory and prepare for the next challenge.",
-                "Reflect on the journey and think about the lessons learned.",
-            ]
-        }
-    ];
-      
+    ]
+    
     const handleAnswerChange = (selectedOption: string) => {
+        const currentAnswersArray = language === 'en' 
+            ? questions[counter].english_answers 
+            : questions[counter].indonesian_answers
+        
+        const selectedIndex = currentAnswersArray.indexOf(selectedOption)
+        
+        // Get previous answer and remove points if needed
+        const previousAnswer = answers[counter]
+        if (previousAnswer) {
+            const previousAnswersArray = language === 'en' 
+                ? questions[counter].english_answers 
+                : questions[counter].indonesian_answers
+            
+            const previousIndex = previousAnswersArray.indexOf(previousAnswer)
+            
+            if (previousIndex !== -1) {
+                const previousClanType = questions[counter].clan_mapping[previousIndex]
+                
+                setClanScores(prevScores => ({
+                    ...prevScores,
+                    [previousClanType]: prevScores[previousClanType] - 1
+                }))
+            }
+        }
+        
+        if (selectedIndex !== -1) {
+            const clanType = questions[counter].clan_mapping[selectedIndex]
+            
+            setClanScores(prevScores => ({
+                ...prevScores,
+                [clanType]: prevScores[clanType] + 1
+            }))
+        }
+        
         const newAnswers = [...answers]
         newAnswers[counter] = selectedOption
         setAnswers(newAnswers)
     }
 
-    function shuffleArray(array: string[]) {
-        const shuffled = [...array]
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1))
-            ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    useEffect(() => {
+        const allAnswered = answers.slice(0, questions.length).every(answer => answer !== "")
+        
+        if (allAnswered) {
+            setIsAllAnswered(true)
+        } else {
+            setIsAllAnswered(false)
         }
-        return shuffled
+    }, [answers, questions.length])
+
+    const determineTopClan = () => {
+        let topClan = clans.Neuro
+        let topScore = clanScores[clans.Neuro]
+        
+        for (const clan in clanScores) {
+            if (clanScores[clan] > topScore) {
+                topScore = clanScores[clan]
+                topClan = clan
+            }
+        }
+        
+        // Save to localStorage
+        localStorage.setItem('userClanResult', topClan)
+        
+        return setClanResult(topClan)
     }
-    
-    const currentAnswers = useMemo(() => {
-        const rawAnswers = language === 'en'
-            ? questions[counter].english_answers
-            : questions[counter].indonesian_answers
-    
-        return shuffleArray(rawAnswers)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [counter, language])
 
     if (!isClient) return null
     
@@ -377,7 +338,7 @@ export default function ClanTestPage(){
 
             <div className="flex flex-col items-center mt-12">
                 <MultipleChoice 
-                    options={currentAnswers}
+                    options={language === 'en' ? questions[counter].english_answers : questions[counter].indonesian_answers}
                     onChange={handleAnswerChange}
                     selectedOption={answers[counter]}
                 />
@@ -389,21 +350,39 @@ export default function ClanTestPage(){
                     disabled={counter === 0}
                     className="flex items-center gap-3"
                 >
-                    <ArrowLeft/>
-                    {/* {language === 'en' ? 'Previous Question' : 'Pertanyaan Sebelumnya'} */}
+                    <ChevronsLeft/>
+                    {language === 'en' ? 'Previous Question' : 'Pertanyaan Sebelumnya'}
                 </CustomButton>
                 <ProgressBar 
                     currentProgress={counter + 1}
-                    total={20}
+                    total={questions.length}
                 />
-                <CustomButton 
-                    onClick={() => setCounter(counter + 1)} 
-                    disabled={counter === 19}
-                    className="flex items-center gap-3"
-                >
-                    {/* {language === 'en' ? 'Next Question' : 'Pertanyaan Selanjutnya'} */}
-                    <ArrowRight/>
-                </CustomButton>
+                {
+                    counter !== 9
+                        ?
+                    <CustomButton 
+                        onClick={() => {
+                            setCounter(counter + 1)
+                        }} 
+                        disabled={counter === questions.length - 1}
+                        className="flex items-center gap-3"
+                    >
+                        {language === 'en' ? 'Next Question' : 'Pertanyaan Selanjutnya'}
+                        <ChevronsRight/>
+                    </CustomButton>
+                        :
+                    <CustomButton 
+                        onClick={() => {
+                            determineTopClan()
+                            router.push(`/results`)
+                        }} 
+                        disabled={!isAllAnswered}
+                        className="flex items-center gap-3"
+                    >
+                        {language === 'en' ? 'Finish Test' : 'Selesaikan Test'}
+                        <ChevronsRight/>
+                    </CustomButton>
+                }
             </div>
         </div>
     )
