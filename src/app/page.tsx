@@ -1,28 +1,37 @@
 "use client"
 
-import CustomButton from "@/components/CustomButton";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { useClanResult } from "@/context/clanResultContext";
-import { useLanguage } from "@/context/languageContext";
-import { Birthstone, Press_Start_2P } from "next/font/google";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import CustomButton from "@/components/CustomButton"
+import LanguageSwitcher from "@/components/LanguageSwitcher"
+import { useClanResult } from "@/context/clanResultContext"
+import { useLanguage } from "@/context/languageContext"
+import { Birthstone, Press_Start_2P } from "next/font/google"
+import Image from "next/image"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
-const birthstone = Birthstone({ subsets: ["latin"], weight: ['400'] });
-const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] });
+const birthstone = Birthstone({ subsets: ["latin"], weight: ['400'] })
+const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] })
 
 export default function LandingPage() {
-    const router = useRouter();
+    const router = useRouter()
     const {language} = useLanguage()
-    const {clanResult} = useClanResult()
-    const [isClient, setIsClient] = useState(false);
+    const {clanResult, setClanResult} = useClanResult()
+    const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
-        setIsClient(true);
-    }, []);
+        setMounted(true)
 
-    if (!isClient) return null
+        if (typeof window !== 'undefined') {
+            const savedClan = localStorage.getItem('userClanResult')
+            if (savedClan) {
+                setClanResult(savedClan)
+            }
+        }
+    }, [setClanResult])
+
+    const buttonText = clanResult 
+        ? (language === 'en' ? 'See Results' : 'Lihat Hasil')
+        : (language === 'en' ? 'Begin Test' : 'Mulai Tes');
     
     return (
         <div
@@ -55,18 +64,25 @@ export default function LandingPage() {
                     </h2>
                 </div>
                 <p className={`${PressStart2P.className} text-xs text-white sm:text-sm md:text-base lg:text-lg w-full max-w-[600px] text-center mt-12 mb-6 px-4`}>
-                    Hey, Resonians! {clanResult}
+                    Hey, Resonians!
                     <br />
                     {language === 'en' ? 'Find the right clan for you now!' : 'Temukan clan yang cocok denganmu!'}
                 </p>
                 <CustomButton
-                    onClick={() => {router.push('/clan-test')}}
+                    onClick={() => {
+                        if(clanResult){
+                            router.push(`/results/${clanResult}`)
+                        }
+                        else{
+                            router.push('/clan-test')
+                        }
+                    }}
                     className="mb-9"
                 >
-                    {language === 'en' ? 'Begin Test' : 'Mulai Tes'}
+                    {buttonText}
                 </CustomButton>
-                <LanguageSwitcher />
+                {mounted && <LanguageSwitcher />}
             </div>
         </div>
-    );
+    )
 }

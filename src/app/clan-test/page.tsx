@@ -35,7 +35,7 @@ export default function ClanTestPage(){
     }, [])
 
     const {language} = useLanguage()
-    const {clanResult, setClanResult} = useClanResult()
+    const {setClanResult} = useClanResult()
 
     const questions = [
         {
@@ -322,7 +322,7 @@ export default function ClanTestPage(){
         }
         
         // Save to localStorage
-        localStorage.setItem('userClanResult', topClan)
+        localStorage.setItem('userClanResult', topClan.toLowerCase())
         
         return setClanResult(topClan)
     }
