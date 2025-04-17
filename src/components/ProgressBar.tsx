@@ -10,7 +10,7 @@ interface ProgressBarProps{
 export default function ProgressBar(props: ProgressBarProps){
     return(
         <div className="w-[150px] flex items-center justify-center gap-5">
-            <p className={`${PressStart2P.className} text-white text-lg`}>
+            <p className={`${PressStart2P.className} text-white text-md lg:text-lg`}>
                 {`${props.currentProgress} / ${props.total}`}
             </p>
         </div>

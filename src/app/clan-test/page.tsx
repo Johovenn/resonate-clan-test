@@ -1,12 +1,12 @@
 "use client"
 
-import CustomButton from "@/components/CustomButton"
 import MultipleChoice from "@/components/MultipleChoice"
 import ProgressBar from "@/components/ProgressBar"
 import QuestionBox from "@/components/QuestionBox"
+import { Button } from "@/components/ui/button"
 import { useClanResult } from "@/context/clanResultContext"
 import { useLanguage } from "@/context/languageContext"
-import { ChevronsLeft, ChevronsRight } from "lucide-react"
+import { Check, ChevronsLeft, ChevronsRight } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
@@ -331,12 +331,12 @@ export default function ClanTestPage(){
     
     return(
         <div
-            className="h-screen w-screen flex flex-col items-center bg-cover bg-center px-4 py-8"
+            className="h-screen w-screen flex flex-col items-center bg-cover bg-center px-2 pt-4 md:px-3 lg:px-6 xl:px-4 xl:py-8"
             style={{ backgroundImage: "url('/background.png')" }}
         >
             <QuestionBox question={language === 'en' ? questions[counter].english_question : questions[counter].indonesian_question} />
 
-            <div className="flex flex-col items-center mt-12">
+            <div className="flex flex-col items-center md:mt-6 lg:mt-8">
                 <MultipleChoice 
                     options={language === 'en' ? questions[counter].english_answers : questions[counter].indonesian_answers}
                     onChange={handleAnswerChange}
@@ -345,14 +345,16 @@ export default function ClanTestPage(){
             </div>
             
             <div className="space-x-5 flex items-center">
-                <CustomButton 
+                <Button 
                     onClick={() => setCounter(counter - 1)} 
                     disabled={counter === 0}
-                    className="flex items-center gap-3"
+                    className="flex items-center gap-3 outline-2 outline-white"
                 >
                     <ChevronsLeft/>
-                    {language === 'en' ? 'Previous Question' : 'Pertanyaan Sebelumnya'}
-                </CustomButton>
+                        <p className="max-md:hidden">
+                            {language === 'en' ? 'Previous Question' : 'Pertanyaan Sebelumnya'}
+                        </p>
+                </Button>
                 <ProgressBar 
                     currentProgress={counter + 1}
                     total={questions.length}
@@ -360,28 +362,32 @@ export default function ClanTestPage(){
                 {
                     counter !== 9
                         ?
-                    <CustomButton 
+                    <Button 
                         onClick={() => {
                             setCounter(counter + 1)
                         }} 
                         disabled={counter === questions.length - 1}
-                        className="flex items-center gap-3"
+                        className="flex items-center gap-3 border-2 border-white"
                     >
-                        {language === 'en' ? 'Next Question' : 'Pertanyaan Selanjutnya'}
+                        <p className="max-md:hidden">
+                            {language === 'en' ? 'Next Question' : 'Pertanyaan Selanjutnya'}
+                        </p>
                         <ChevronsRight/>
-                    </CustomButton>
+                    </Button>
                         :
-                    <CustomButton 
+                    <Button
                         onClick={() => {
                             determineTopClan()
                             router.push(`/results`)
                         }} 
                         disabled={!isAllAnswered}
-                        className="flex items-center gap-3"
+                        className="flex items-center gap-3 border-2 border-white"
                     >
-                        {language === 'en' ? 'Finish Test' : 'Selesaikan Test'}
-                        <ChevronsRight/>
-                    </CustomButton>
+                        <p className="max-md:hidden">
+                            {language === 'en' ? 'Finish Test' : 'Selesaikan Test'}
+                        </p>
+                        <Check />
+                    </Button>
                 }
             </div>
         </div>

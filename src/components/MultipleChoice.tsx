@@ -22,13 +22,14 @@ export default function MultipleChoice(props: MultipleChoiceProps) {
     return (
         <div className="w-full mb-6 overflow-visible">
             <RadioGroup onValueChange={handleOptionChange} value={props.selectedOption || ""}>
-                <div className="flex gap-6 w-fit mx-auto py-4">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:flex lg:flex-row gap-1 sm:gap-4 md:gap-5 lg:gap-6 w-fit mx-auto">
                     {props.options.map((option, index) => (
                         <div
                             key={index}
                             className={clsx(
-                                "relative rounded-lg overflow-hidden cursor-pointer transition-all duration-700 w-90 h-90 shrink-0 bg-cover bg-center",
-                                props.selectedOption === option ? "scale-125" : "scale-100"
+                                "relative rounded-lg overflow-hidden cursor-pointer transition-all duration-700 \
+                                aspect-square w-50 sm:w-60 md:w-70 lg:w-80 shrink-0 bg-cover bg-center",
+                                props.selectedOption === option ? "scale-110 lg:scale-125" : "scale-95 md:scale-100"
                             )}
                             onClick={() => handleOptionChange(option)}
                         >
@@ -37,7 +38,7 @@ export default function MultipleChoice(props: MultipleChoiceProps) {
                                 alt="answer frame"
                                 width={100}
                                 height={100}
-                                className="absolute object-cover w-full"
+                                className="absolute object-cover w-full h-full"
                             />
                             
                             <div className="relative z-10 w-full h-full flex justify-center items-center text-center">
@@ -47,7 +48,7 @@ export default function MultipleChoice(props: MultipleChoiceProps) {
                                     htmlFor={`option-${index}`}
                                     className={clsx(
                                         JetBrains.className,
-                                        "text-white text-lg font-bold leading-relaxed px-12"
+                                        "text-white font-bold leading-tight px-8 sm:px-10 md:px-12 py-2 sm:py-3 md:py-4 lg:py-5 text-xs sm:text-sm md:text-md"
                                     )}
                                 >
                                     {option}
