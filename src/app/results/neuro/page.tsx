@@ -12,23 +12,41 @@ export default function NeuroPage(){
     const { language } = useLanguage();
 
     return (
-        <div className="w-screen h-screen overflow-hidden flex flex-col">
-            <div className="w-full bg-[#545454] flex justify-center items-center gap-2 py-2 shrink-0">
+        <div className="w-screen h-screen overflow-hidden flex flex-col neuro-results-page">
+            <div className="stars"></div>
+            <div className="shooting-star"></div>
+            <div className="shooting-star"></div>
+            <div className="shooting-star"></div>
+            <div className="shooting-star"></div>
+            <div className="shooting-star"></div>
+            <div className="shooting-star"></div>
+            <div className="shooting-star"></div>
+            <div className="shooting-star"></div>
+            <div className="shooting-star"></div>
+            <div className="shooting-star"></div>
+            <div className="shooting-star"></div>
+            <div className="shooting-star"></div>
+            <div className="shooting-star"></div>
+            <div className="shooting-star"></div>
+            <div className="shooting-star"></div>
+            <div className="shooting-star"></div>
+
+            <div className="w-full flex justify-center items-center gap-2 py-2 shrink-0">
                 <Image src={'/jc-logo.png'} alt="jc logo" width={50} height={50} />
                 <Image src={'/resonate-logo.png'} alt="resonate logo" width={200} height={60} />
             </div>
 
             <Link
                 href={'/results'}  
-                className={`${PressStart2P.className} w-full bg-[#797979] py-2 flex justify-center hover:bg-[#797979]/90 transition-all text-white text-shadow-lg text-shadow-white text-center text-sm shrink-0`}
+                className={`${PressStart2P.className} w-full py-2 flex justify-center transition-all text-white text-shadow-lg text-shadow-white text-center text-sm shrink-0`}
             >
                 {language === 'en' ? 'Check out other clans' : 'Lihat tentang clan lainnya'}
             </Link>
 
             <div className="flex flex-1 min-h-0">
-                <div className="bg-[#545454] w-[40%] p-5 flex items-center justify-center">
+                <div className="w-[40%] p-5 flex justify-center">
                     <div className="border-4 border-white flex flex-col items-center rounded-xl shadow-[0_0_20px_white] px-5 py-8">
-                        <h1 className={`${PressStart2P.className} text-white text-4xl text-shadow-lg text-shadow-white`}>
+                        <h1 className={`${PressStart2P.className} text-white text-5xl text-shadow-lg text-shadow-white`}>
                             NEURO
                         </h1>
                         <Image 
@@ -43,7 +61,7 @@ export default function NeuroPage(){
                     </div>
                 </div>
 
-                <div className="flex-1 h-full bg-gray-200 bg-[radial-gradient(circle_at_center,_#545454,_#797979)] px-12 py-8">
+                <div className="flex-1 h-full overflow-y-auto scroll-smooth px-12 py-8">
                     <h3 className={`${orbitron.className} text-3xl text-white font-medium text-shadow-lg text-shadow-white mb-8`}>
                         Kamu adalah seorang <span className={`font-black text-md text-shadow-lg text-shadow-white`}>Neuro</span>
                     </h3>
@@ -55,10 +73,10 @@ export default function NeuroPage(){
                         Karakteristik
                     </h3>
                     <ul className={`list-disc list-inside ${orbitron.className} text-md text-white font-medium mb-12`}>
-                        <li>Memiliki empati yang tinggi dan peduli terhadap kesejahteraan orang lain.</li>
-                        <li>Fokus pada membangun hubungan dan kerja sama tim.</li>
-                        <li>Cenderung menjadi mediator atau penyelesai konflik dalam kelompok.</li>
-                        <li>Mampu menjaga semangat dan moral tinggi dalam situasi yang sulit.</li>
+                        <li>Memiliki pemikiran analitis yang tajam dan logis.</li>
+                        <li>Terampil dalam merancang solusi berbasis data dan teknologi.</li>
+                        <li>Lebih suka memecahkan masalah dengan cara yang sistematis dan terstruktur.</li>
+                        <li>Memiliki kemampuan untuk mengidentifikasi peluang baru dan merencanakan jangka panjang.</li>
                     </ul>
                     
                     <h3 className={`${orbitron.className} text-3xl text-white font-black text-shadow-sm text-shadow-white mb-4`}>
