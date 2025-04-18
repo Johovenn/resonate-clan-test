@@ -8,78 +8,50 @@ const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] });
 
 export default function ResultsPage(){
     const router = useRouter()
+    
+    const characters = [
+        { name: "NEURO", image: "/neuro.png", path: "/results/neuro", textShadow: "text-shadow-white" },
+        { name: "PHILOS", image: "/philos.png", path: "/results/philos", textShadow: "text-shadow-red-900" },
+        { name: "FORTE", image: "/forte.png", path: "/results/forte", textShadow: "text-shadow-green-500" },
+        { name: "OCULUS", image: "/oculus.png", path: "/results/oculus", textShadow: "text-shadow-blue-500" }
+    ];
 
     return(
-        <>
-            <div
-                className="h-screen w-screen flex flex-col items-center justify-center bg-cover bg-center px-4 py-8"
-                style={{ backgroundImage: "url('/background.png')" }}
-            >
-                <Image 
-                    src={'/resonate-logo.png'}
-                    alt="resonate"
-                    width={800}
-                    height={500}
-                />
-                <div className="flex items-center justify-between">
+        <div
+            className="min-h-screen w-full flex flex-col items-center justify-start bg-cover bg-center px-4 py-8"
+            style={{ backgroundImage: "url('/background.png')" }}
+        >
+            <Image 
+                src={'/resonate-logo.png'}
+                alt="resonate"
+                width={800}
+                height={500}
+                className="w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] xl:w-[800px] mb-6"
+                priority
+            />
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto mb-12">
+                {characters.map((character) => (
                     <div 
-                        className="flex flex-col justify-center hover:scale-105 transition-all"
-                        onClick={() => router.push('/results/neuro')}
+                        key={character.name}
+                        className="flex flex-col items-center justify-center hover:scale-105 transition-all cursor-pointer"
+                        onClick={() => router.push(character.path)}
                     >
-                        <Image 
-                            src={'/neuro.png'}
-                            alt="neuro"
-                            width={300}
-                            height={300}
-                        />
-                        <p className={`${PressStart2P.className} text-center text-white text-shadow-white text-shadow-lg text-3xl`}>
-                            NEURO
+                        <div className="w-full max-w-[250px]">
+                            <Image 
+                                src={character.image}
+                                alt={character.name.toLowerCase()}
+                                width={300}
+                                height={300}
+                                className="w-full"
+                            />
+                        </div>
+                        <p className={`${PressStart2P.className} text-center text-white ${character.textShadow} text-shadow-lg text-xl sm:text-2xl lg:text-3xl mt-2`}>
+                            {character.name}
                         </p>
                     </div>
-                    <div 
-                        className="flex flex-col justify-center hover:scale-105 transition-all"
-                        onClick={() => router.push('/results/philos')}
-                    >
-                        <Image 
-                            src={'/philos.png'}
-                            alt="philos"
-                            width={300}
-                            height={300}
-                        />
-                        <p className={`${PressStart2P.className} text-center text-white text-shadow-red-900 text-shadow-lg text-3xl`}>
-                            PHILOS
-                        </p>
-                    </div>
-                    <div 
-                        className="flex flex-col justify-center hover:scale-105 transition-all"
-                        onClick={() => router.push('/results/forte')}
-                    >
-                        <Image 
-                            src={'/forte.png'}
-                            alt="forte"
-                            width={300}
-                            height={300}
-                        />
-                        <p className={`${PressStart2P.className} text-center text-white text-shadow-green-500 text-shadow-lg text-3xl`}>
-                            FORTE
-                        </p>
-                    </div>
-                    <div 
-                        className="flex flex-col justify-center hover:scale-105 transition-all"
-                        onClick={() => router.push('/results/oculus')}
-                    >
-                        <Image 
-                            src={'/oculus.png'}
-                            alt="oculus"
-                            width={300}
-                            height={300}
-                        />
-                        <p className={`${PressStart2P.className} text-center text-white text-shadow-blue-500 text-shadow-lg text-3xl`}>
-                            OCULUS
-                        </p>
-                    </div>
-                </div>
+                ))}
             </div>
-        </>
+        </div>
     )
 }
