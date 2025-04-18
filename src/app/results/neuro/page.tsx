@@ -12,20 +12,20 @@ export default function NeuroPage(){
     const { language } = useLanguage();
 
     return (
-        <div className="w-full min-h-screen overflow-x-hidden flex flex-col neuro-results-page">
+        <div className="w-full h-screen overflow-hidden flex flex-col neuro-results-page">
             <div className="stars"></div>
             {/* Shooting stars */}
             {Array(16).fill(0).map((_, index) => (
                 <div key={index} className="shooting-star"></div>
             ))}
 
-            {/* Header */}
+            {/* Header - Fixed */}
             <div className="w-full flex justify-center items-center gap-2 py-2 shrink-0">
                 <Image src={'/jc-logo.png'} alt="jc logo" width={50} height={50} />
                 <Image src={'/resonate-logo.png'} alt="resonate logo" width={200} height={60} className="max-w-[150px] sm:max-w-[200px]" />
             </div>
 
-            {/* Navigation */}
+            {/* Navigation - Fixed */}
             <Link
                 href={'/results'}  
                 className={`${PressStart2P.className} w-full py-2 flex justify-center transition-all text-white text-shadow-lg text-shadow-white text-center text-xs sm:text-sm shrink-0`}
@@ -33,10 +33,10 @@ export default function NeuroPage(){
                 {language === 'en' ? 'Check out other clans' : 'Lihat tentang clan lainnya'}
             </Link>
 
-            {/* Main content */}
-            <div className="flex flex-col lg:flex-row flex-1 min-h-0">
-                {/* Character card - Full width on mobile, 40% on desktop */}
-                <div className="w-full lg:w-[40%] p-3 sm:p-5 flex justify-center mb-4 lg:mb-0">
+            {/* Main content - Fixed container */}
+            <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
+                {/* Character card - Fixed on both mobile and desktop */}
+                <div className="w-full lg:w-[40%] p-3 sm:p-5 flex justify-center mb-4 lg:mb-0 shrink-0">
                     <div className="border-4 border-white flex flex-col items-center rounded-xl shadow-[0_0_20px_white] px-3 sm:px-5 py-4 sm:py-8">
                         <h1 className={`${PressStart2P.className} text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-shadow-lg text-shadow-white`}>
                             NEURO
@@ -54,8 +54,8 @@ export default function NeuroPage(){
                     </div>
                 </div>
 
-                {/* Description - Full width on mobile, 60% on desktop */}
-                <div className="flex-1 h-full overflow-y-auto scroll-smooth px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-8 pb-8 lg:pb-16">
+                {/* Description - Only this part scrolls */}
+                <div className="flex-1 overflow-y-auto px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-8 pb-8 lg:pb-16">
                     <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-medium text-shadow-lg text-shadow-white mb-4 lg:mb-8`}>
                         Kamu adalah seorang <span className={`font-black text-shadow-lg text-shadow-white`}>Neuro</span>
                     </h3>

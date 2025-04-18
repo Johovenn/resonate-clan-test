@@ -259,7 +259,7 @@ export default function ClanTestPage(){
             ]
         },
     ]
-    
+
     const handleAnswerChange = (selectedOption: string) => {
         const currentAnswersArray = language === 'en' 
             ? questions[counter].english_answers 
@@ -324,6 +324,7 @@ export default function ClanTestPage(){
         // Save to localStorage
         localStorage.setItem('userClanResult', topClan.toLowerCase())
         
+        router.push(`/results/${topClan.toLowerCase()}`)
         return setClanResult(topClan)
     }
 
@@ -348,7 +349,7 @@ export default function ClanTestPage(){
                 <Button 
                     onClick={() => setCounter(counter - 1)} 
                     disabled={counter === 0}
-                    className="flex items-center gap-3 outline-2 outline-white"
+                    className="flex items-center gap-3 border-2 border-white"
                 >
                     <ChevronsLeft/>
                         <p className="max-md:hidden">
@@ -378,7 +379,6 @@ export default function ClanTestPage(){
                     <Button
                         onClick={() => {
                             determineTopClan()
-                            router.push(`/results`)
                         }} 
                         disabled={!isAllAnswered}
                         className="flex items-center gap-3 border-2 border-white"

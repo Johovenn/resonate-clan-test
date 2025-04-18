@@ -12,7 +12,7 @@ export default function OculusPage(){
     const { language } = useLanguage();
 
     return (
-        <div className="w-full min-h-screen overflow-x-hidden flex flex-col oculus-results-page">
+        <div className="w-full h-screen overflow-hidden flex flex-col oculus-results-page">
             <div className="stars"></div>
             {/* Shooting stars */}
             {Array(16).fill(0).map((_, index) => (
@@ -34,9 +34,9 @@ export default function OculusPage(){
             </Link>
 
             {/* Main content */}
-            <div className="flex flex-col lg:flex-row flex-1 min-h-0">
+            <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
                 {/* Character card - Full width on mobile, 40% on desktop */}
-                <div className="w-full lg:w-[40%] p-3 sm:p-5 flex justify-center mb-4 lg:mb-0">
+                <div className="w-full lg:w-[40%] p-3 sm:p-5 flex justify-center mb-4 lg:mb-0 shrink-0">
                     <div className="border-4 border-white flex flex-col items-center rounded-xl shadow-[0_0_20px_white] px-3 sm:px-5 py-4 sm:py-8">
                         <h1 className={`${PressStart2P.className} text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-shadow-lg text-shadow-white`}>
                             OCULUS
@@ -55,7 +55,7 @@ export default function OculusPage(){
                 </div>
 
                 {/* Description - Full width on mobile, 60% on desktop */}
-                <div className="flex-1 h-full overflow-y-auto scroll-smooth px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-8 pb-8 lg:pb-16">
+                <div className="flex-1 overflow-y-auto px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-8 pb-8 lg:pb-16">
                     <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-medium text-shadow-lg text-shadow-white mb-4 lg:mb-8`}>
                         Kamu adalah seorang <span className={`font-black text-shadow-lg text-shadow-white`}>Oculus</span>
                     </h3>
