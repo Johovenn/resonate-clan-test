@@ -12,7 +12,7 @@ export default function NeuroPage(){
     const { language } = useLanguage();
 
     return (
-        <div className="w-full h-screen overflow-hidden flex flex-col neuro-results-page">
+        <div className="w-full min-h-screen lg:h-screen lg:overflow-hidden flex flex-col neuro-results-page">
             <div className="stars"></div>
             {/* Shooting stars */}
             {Array(16).fill(0).map((_, index) => (
@@ -33,9 +33,9 @@ export default function NeuroPage(){
                 {language === 'en' ? 'Check out other clans' : 'Lihat tentang clan lainnya'}
             </Link>
 
-            {/* Main content - Fixed container */}
-            <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
-                {/* Character card - Fixed on both mobile and desktop */}
+            {/* Main content - Changes based on screen size */}
+            <div className="flex flex-col lg:flex-row flex-1 lg:overflow-hidden">
+                {/* Character card - Scrollable on mobile, fixed on desktop */}
                 <div className="w-full lg:w-[40%] p-3 sm:p-5 flex justify-center mb-4 lg:mb-0 shrink-0">
                     <div className="border-4 border-white flex flex-col items-center rounded-xl shadow-[0_0_20px_white] px-3 sm:px-5 py-4 sm:py-8">
                         <h1 className={`${PressStart2P.className} text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-shadow-lg text-shadow-white`}>
@@ -54,8 +54,8 @@ export default function NeuroPage(){
                     </div>
                 </div>
 
-                {/* Description - Only this part scrolls */}
-                <div className="flex-1 overflow-y-auto px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-8 pb-8 lg:pb-16">
+                {/* Description - Always scrollable but contained differently based on screen size */}
+                <div className="flex-1 lg:overflow-y-auto px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-8 pb-8 lg:pb-16">
                     <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-medium text-shadow-lg text-shadow-white mb-4 lg:mb-8`}>
                         Kamu adalah seorang <span className={`font-black text-shadow-lg text-shadow-white`}>Neuro</span>
                     </h3>
