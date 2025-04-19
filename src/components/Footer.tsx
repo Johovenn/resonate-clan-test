@@ -13,7 +13,7 @@ export default function Footer() {
                 <div className="flex flex-col justify-between space-y-2 text-white text-center lg:text-left">
                     <div>
                         <h3 className="text-xl font-semibold mb-2">Junior Church Camp CK7 2025</h3>
-                        <p className="text-gray-400">Work together, we shine</p>
+                        <p className="text-gray-400">Work together, we shine!</p>
                     </div>
                     
                     <div className="mt-auto">
@@ -63,7 +63,7 @@ export default function Footer() {
                             />
                             </div>
                             <p className="text-white">
-                                jc.campck7
+                                Junior Church CK7
                             </p>
                         </div>
                     </div>
