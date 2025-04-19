@@ -27,7 +27,7 @@ export default function PhilosPage(){
                 {/* Header */}
                 <div className="w-full flex justify-center items-center gap-2 py-2 shrink-0 bg-black">
                     <Image src={'/jc-logo.png'} alt="jc logo" width={50} height={50} />
-                    <Image src={'/resonate-logo.png'} alt="resonate logo" width={200} height={60} className="max-w-[150px] sm:max-w-[200px]" />
+                    <Image onClick={() => router.push('/')} src={'/resonate-logo.png'} alt="resonate logo" width={200} height={60} className="max-w-[150px] sm:max-w-[200px]" />
                 </div>
 
                 {/* Main content */}
