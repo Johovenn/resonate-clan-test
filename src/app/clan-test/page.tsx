@@ -333,7 +333,7 @@ export default function ClanTestPage(){
     return(
         <div
             className="h-screen w-screen flex flex-col items-center bg-cover bg-center px-2 pt-4 md:px-3 lg:px-6 xl:px-4 xl:py-8"
-            style={{ backgroundImage: "url('/background.png')" }}
+            style={{ backgroundImage: "url('/background-dark.png')" }}
         >
             <QuestionBox question={language === 'en' ? questions[counter].english_question : questions[counter].indonesian_question} />
 

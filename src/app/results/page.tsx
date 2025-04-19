@@ -1,5 +1,7 @@
 "use client"
 
+import CustomButton from "@/components/CustomButton";
+import { useLanguage } from "@/context/languageContext";
 import { Press_Start_2P } from "next/font/google";
 import Image from "next/image"
 import { useRouter } from "next/navigation";
@@ -8,7 +10,8 @@ const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] });
 
 export default function ResultsPage(){
     const router = useRouter()
-    
+    const {language} = useLanguage()
+
     const characters = [
         { name: "NEURO", image: "/neuro.png", path: "/results/neuro", textShadow: "text-shadow-white" },
         { name: "PHILOS", image: "/philos.png", path: "/results/philos", textShadow: "text-shadow-red-900" },
@@ -30,7 +33,7 @@ export default function ResultsPage(){
                 priority
             />
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-16 max-w-7xl mx-auto mb-20">
                 {characters.map((character) => (
                     <div 
                         key={character.name}
@@ -52,6 +55,12 @@ export default function ResultsPage(){
                     </div>
                 ))}
             </div>
+
+            <CustomButton
+                onClick={() => router.push('/')}
+            >
+                {language === 'en' ? 'Back to Home' : 'Kembali'}
+            </CustomButton>
         </div>
     )
 }

@@ -1,31 +1,30 @@
 "use client"
 
-import { useLanguage } from "@/context/languageContext";
-import { Orbitron, Press_Start_2P } from "next/font/google";
-import Image from "next/image";
-import Link from "next/link";
+import { useClanResult } from "@/context/clanResultContext"
+import { useLanguage } from "@/context/languageContext"
+import { Orbitron, Press_Start_2P } from "next/font/google"
+import Image from "next/image"
+import Link from "next/link"
 
-const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] });
+const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] })
 const orbitron = Orbitron({ subsets: ["latin"], weight: ['400', '500', '600', '700', '800', '900'] })
 
 export default function OculusPage(){
-    const { language } = useLanguage();
+    const { language } = useLanguage()
+    const {clanResult} = useClanResult()
 
     return (
         <div className="w-full min-h-screen lg:h-screen lg:overflow-hidden flex flex-col oculus-results-page">
             <div className="stars"></div>
-            {/* Shooting stars */}
             {Array(16).fill(0).map((_, index) => (
                 <div key={index} className="shooting-star"></div>
             ))}
 
-            {/* Header */}
             <div className="w-full flex justify-center items-center gap-2 py-2 shrink-0">
                 <Image src={'/jc-logo.png'} alt="jc logo" width={50} height={50} />
                 <Image src={'/resonate-logo.png'} alt="resonate logo" width={200} height={60} className="max-w-[150px] sm:max-w-[200px]" />
             </div>
 
-            {/* Navigation */}
             <Link
                 href={'/results'}  
                 className={`${PressStart2P.className} w-full py-2 flex justify-center transition-all text-white text-shadow-lg text-shadow-white text-center text-xs sm:text-sm shrink-0`}
@@ -33,9 +32,7 @@ export default function OculusPage(){
                 {language === 'en' ? 'Check out other clans' : 'Lihat tentang clan lainnya'}
             </Link>
 
-            {/* Main content */}
             <div className="flex flex-col lg:flex-row flex-1 lg:overflow-hidden">
-                {/* Character card - Full width on mobile, 40% on desktop */}
                 <div className="w-full lg:w-[40%] p-3 sm:p-5 flex justify-center mb-4 lg:mb-0 shrink-0">
                     <div className="border-4 border-white flex flex-col items-center rounded-xl shadow-[0_0_20px_white] px-3 sm:px-5 py-4 sm:py-8">
                         <h1 className={`${PressStart2P.className} text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-shadow-lg text-shadow-white`}>
@@ -54,40 +51,87 @@ export default function OculusPage(){
                     </div>
                 </div>
 
-                {/* Description - Full width on mobile, 60% on desktop */}
                 <div className="flex-1 lg:overflow-y-auto px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-8 pb-8 lg:pb-16">
                     <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-medium text-shadow-lg text-shadow-white mb-4 lg:mb-8`}>
-                        Kamu adalah seorang <span className={`font-black text-shadow-lg text-shadow-white`}>Oculus</span>
+                        {
+                            clanResult === 'oculus'
+                            ? (
+                                language === 'en' 
+                                    ? <>You Are an <span className="font-black text-shadow-lg text-shadow-white">Oculus</span></>
+                                    : <>Kamu Adalah Seorang <span className="font-black text-shadow-lg text-shadow-white">Oculus</span></>
+                            )
+                            : (
+                                language === 'en' 
+                                    ? <><span className="font-black text-shadow-lg text-shadow-white">Description</span></>
+                                    : <><span className="font-black text-shadow-lg text-shadow-white">Deskripsi</span></>
+                            )
+                        }
                     </h3>
+
                     <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
-                        Clan <span className="font-black">Oculus</span> dikenal karena kemampuan luar biasa mereka dalam mengamati dan menganalisis situasi dengan sangat tajam. Mereka memiliki indra yang jauh lebih tajam dari orang biasa, terutama dalam hal penglihatan. Anggota Oculus mampu melihat hal-hal yang tersembunyi atau tidak terlihat oleh orang lain, menjadikan mereka ahli dalam pengintaian, strategi lapangan, dan analisis pertempuran. Dengan kemampuan mereka untuk melihat jauh ke depan dan menangkap gerakan halus di sekitar mereka, Oculus sering kali berada di garis depan dalam hal merencanakan taktik dan memprediksi langkah lawan. Mereka bukan hanya pengamat, tetapi perancang strategi yang jenius.
+                        {language === 'en' ? (
+                            <>
+                                The <span className="font-black">Oculus</span> clan is known for their extraordinary ability to observe and analyze situations with sharp precision. They possess heightened senses, especially sight, enabling them to see things hidden or invisible to others. Oculus members excel in reconnaissance, field strategy, and battle analysis. With their foresight and keen perception, they often lead in planning tactics and predicting enemy moves. They&apos;re not just observers, but brilliant strategists.
+                            </>
+                        ) : (
+                            <>
+                                Clan <span className="font-black">Oculus</span> dikenal karena kemampuan luar biasa mereka dalam mengamati dan menganalisis situasi dengan sangat tajam. Mereka memiliki indra yang jauh lebih tajam dari orang biasa, terutama dalam hal penglihatan. Anggota Oculus mampu melihat hal-hal yang tersembunyi atau tidak terlihat oleh orang lain, menjadikan mereka ahli dalam pengintaian, strategi lapangan, dan analisis pertempuran. Dengan kemampuan mereka untuk melihat jauh ke depan dan menangkap gerakan halus di sekitar mereka, Oculus sering kali berada di garis depan dalam hal merencanakan taktik dan memprediksi langkah lawan. Mereka bukan hanya pengamat, tetapi perancang strategi yang jenius.
+                            </>
+                        )}
                     </p>
 
                     <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black text-shadow-sm text-shadow-white mb-2 lg:mb-4`}>
-                        Karakteristik
+                        {language === 'en' ? 'Characteristics' : 'Karakteristik'}
                     </h3>
                     <ul className={`list-disc list-inside ${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
-                        <li>Memiliki kemampuan pengamatan yang sangat tajam dan analitis.</li>
-                        <li>Suka merencanakan dan menganalisis berbagai kemungkinan.</li>
-                        <li>Cenderung melihat setiap detail dan menyusun strategi berdasarkan informasi yang sangat terperinci.</li>
-                        <li>Sangat efektif dalam peran pengintaian, perencanaan taktik, dan strategi lapangan.</li>
+                        {language === 'en' ? (
+                            <>
+                                <li>Has sharp observational and analytical abilities.</li>
+                                <li>Enjoys planning and analyzing various possibilities.</li>
+                                <li>Focuses on every detail and forms strategies based on thorough information.</li>
+                                <li>Highly effective in roles of reconnaissance, tactical planning, and field strategy.</li>
+                            </>
+                        ) : (
+                            <>
+                                <li>Memiliki kemampuan pengamatan yang sangat tajam dan analitis.</li>
+                                <li>Suka merencanakan dan menganalisis berbagai kemungkinan.</li>
+                                <li>Cenderung melihat setiap detail dan menyusun strategi berdasarkan informasi yang sangat terperinci.</li>
+                                <li>Sangat efektif dalam peran pengintaian, perencanaan taktik, dan strategi lapangan.</li>
+                            </>
+                        )}
                     </ul>
-                    
+
                     <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black text-shadow-sm text-shadow-white mb-2 lg:mb-4`}>
-                        Filosofi
+                        {language === 'en' ? 'Philosophy' : 'Filosofi'}
                     </h3>
                     <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
-                    Bagi Oculus, kemenangan datang dari kemampuan untuk melihat lebih jauh dan lebih tajam dari orang lain. Mereka percaya bahwa dengan memperhatikan setiap detail kecil dan memanfaatkan pengamatan yang jeli, mereka dapat merancang taktik yang membawa perubahan besar dalam peperangan atau situasi sulit lainnya. Mereka adalah ahli dalam membaca situasi dan menangkap celah yang tidak terlihat oleh orang lain.
+                        {language === 'en' ? (
+                            <>
+                                For the Oculus, victory comes from the ability to see farther and sharper than others. They believe that by observing every small detail and utilizing keen perception, they can craft tactics that create significant breakthroughs in battles or complex situations. They&apos;re masters at reading the room and spotting opportunities others miss.
+                            </>
+                        ) : (
+                            <>
+                                Bagi Oculus, kemenangan datang dari kemampuan untuk melihat lebih jauh dan lebih tajam dari orang lain. Mereka percaya bahwa dengan memperhatikan setiap detail kecil dan memanfaatkan pengamatan yang jeli, mereka dapat merancang taktik yang membawa perubahan besar dalam peperangan atau situasi sulit lainnya. Mereka adalah ahli dalam membaca situasi dan menangkap celah yang tidak terlihat oleh orang lain.
+                            </>
+                        )}
                     </p>
-                    
+
                     <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black text-shadow-sm text-shadow-white mb-2 lg:mb-4`}>
-                        Prinsip
+                        {language === 'en' ? 'Principle' : 'Prinsip'}
                     </h3>
                     <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
-                    Matius 6:22-23 (TB)  Mata adalah pelita tubuh. Jika matamu baik, teranglah seluruh tubuhmu; jika matamu jahat, gelaplah seluruh tubuhmu. Jadi jika terang yang ada padamu gelap, betapa gelapnya kegelapan itu.
+                        {language === 'en' ? (
+                            <>
+                                Matthew 6:22-23 (NIV) — “The eye is the lamp of the body. If your eyes are healthy, your whole body will be full of light. But if your eyes are unhealthy, your whole body will be full of darkness. If then the light within you is darkness, how great is that darkness!”
+                            </>
+                        ) : (
+                            <>
+                                Matius 6:22-23 (TB) — Mata adalah pelita tubuh. Jika matamu baik, teranglah seluruh tubuhmu; jika matamu jahat, gelaplah seluruh tubuhmu. Jadi jika terang yang ada padamu gelap, betapa gelapnya kegelapan itu.
+                            </>
+                        )}
                     </p>
                 </div>
             </div>
         </div>
-    );
+    )
 }
