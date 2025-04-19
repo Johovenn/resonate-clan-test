@@ -30,9 +30,7 @@ export default function LandingPage() {
         }
     }, [setClanResult])
 
-    const buttonText = clanResult 
-        ? (language === 'en' ? 'See Results' : 'Lihat Hasil')
-        : (language === 'en' ? 'Begin Test' : 'Mulai Tes');
+    const buttonText = (language === 'en' ? 'Begin Test' : 'Mulai Tes');
     
     return (
         <div className="overflow-x-hidden">
@@ -72,12 +70,7 @@ export default function LandingPage() {
                     </p>
                     <CustomButton
                         onClick={() => {
-                            if(clanResult){
-                                router.push(`/results/${clanResult}`)
-                            }
-                            else{
-                                router.push('/clan-test')
-                            }
+                            router.push('/clan-test')
                         }}
                         className="mb-9"
                     >
