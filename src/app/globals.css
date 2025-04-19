@@ -286,10 +286,53 @@
     50vw 75vh 1px white, 55vw 88vh 2px white, 60vw 95vh 1px white,
     65vw 72vh 2px white, 70vw 85vh 1px white, 75vw 78vh 2px white,
     80vw 92vh 1px white, 85vw 82vh 2px white, 90vw 88vh 1px white,
+    95vw 75vh 2px white,
+    /* Additional stars - first set */
+    3vw 10vh 1px white, 8vw 22vh 2px white, 13vw 30vh 1px white,
+    20vw 7vh 2px white, 27vw 42vh 1px white, 34vw 15vh 2px white,
+    41vw 55vh 1px white, 46vw 12vh 2px white, 52vw 30vh 1px white,
+    57vw 8vh 2px white, 62vw 25vh 1px white, 67vw 52vh 2px white,
+    72vw 18vh 1px white, 77vw 38vh 2px white, 82vw 12vh 1px white,
+    87vw 42vh 2px white, 92vw 8vh 1px white, 97vw 28vh 2px white,
+    2vw 82vh 1px white, 7vw 95vh 2px white, 14vw 88vh 1px white,
+    23vw 92vh 2px white, 28vw 98vh 1px white, 33vw 85vh 2px white,
+    38vw 78vh 1px white, 43vw 88vh 2px white, 48vw 98vh 1px white,
+    53vw 78vh 2px white, 58vw 65vh 1px white, 63vw 82vh 2px white,
+    68vw 95vh 1px white, 73vw 65vh 2px white, 78vw 72vh 1px white,
+    83vw 95vh 2px white, 88vw 70vh 1px white, 93vw 82vh 2px white,
+    98vw 65vh 1px white;
+  animation: twinkle 8s infinite linear;
+  pointer-events: none;
+}
+.neuro-results-page {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #797979, #545454 70%, #545454);
+  overflow: hidden;
+  position: relative;
+}
+
+.stars {
+  width: 1px;
+  height: 1px;  
+  position: absolute;
+  background: white;
+  box-shadow: 2vw 5vh 2px white, 10vw 8vh 2px white, 15vw 15vh 1px white,
+    22vw 22vh 1px white, 28vw 12vh 2px white, 32vw 32vh 1px white,
+    38vw 18vh 2px white, 42vw 35vh 1px white, 48vw 25vh 2px white,
+    53vw 42vh 1px white, 58vw 15vh 2px white, 63vw 38vh 1px white,
+    68vw 28vh 2px white, 73vw 45vh 1px white, 78vw 32vh 2px white,
+    83vw 48vh 1px white, 88vw 20vh 2px white, 93vw 52vh 1px white,
+    98vw 35vh 2px white, 5vw 60vh 1px white, 12vw 65vh 2px white,
+    18vw 72vh 1px white, 25vw 78vh 2px white, 30vw 85vh 1px white,
+    35vw 68vh 2px white, 40vw 82vh 1px white, 45vw 92vh 2px white,
+    50vw 75vh 1px white, 55vw 88vh 2px white, 60vw 95vh 1px white,
+    65vw 72vh 2px white, 70vw 85vh 1px white, 75vw 78vh 2px white,
+    80vw 92vh 1px white, 85vw 82vh 2px white, 90vw 88vh 1px white,
     95vw 75vh 2px white;
   animation: twinkle 8s infinite linear;
   pointer-events: none;
 }
+
 .shooting-star {
   position: absolute;
   width: 100px;
@@ -318,21 +361,131 @@
 }
 
 .shooting-star:nth-child(1) {
-  top: 20%;
+  top: 10%;
   left: -100px;
   animation-delay: 0s;
 }
 
 .shooting-star:nth-child(2) {
-  top: 35%;
+  top: 20%;
   left: -100px;
-  animation-delay: 1s;
+  animation-delay: 0.8s;
+  transform: rotate(40deg);
 }
 
 .shooting-star:nth-child(3) {
+  top: 30%;
+  left: -100px;
+  animation-delay: 1.6s;
+  transform: rotate(50deg);
+}
+
+.shooting-star:nth-child(4) {
+  top: 15%;
+  left: -100px;
+  animation-delay: 2.4s;
+  transform: rotate(35deg);
+}
+
+.shooting-star:nth-child(5) {
+  top: 40%;
+  left: -100px;
+  animation-delay: 3.2s;
+  transform: rotate(55deg);
+}
+
+.shooting-star:nth-child(6) {
+  top: 25%;
+  left: -100px;
+  animation-delay: 4s;
+  transform: rotate(42deg);
+}
+
+.shooting-star:nth-child(7) {
   top: 50%;
   left: -100px;
-  animation-delay: 2s;
+  animation-delay: 4.8s;
+  transform: rotate(48deg);
+}
+
+.shooting-star:nth-child(8) {
+  top: 60%;
+  left: -100px;
+  animation-delay: 5.6s;
+  transform: rotate(52deg);
+}
+
+.shooting-star:nth-child(9) {
+  top: 35%;
+  left: -100px;
+  animation-delay: 6.4s;
+  transform: rotate(38deg);
+}
+
+.shooting-star:nth-child(10) {
+  top: 70%;
+  left: -100px;
+  animation-delay: 7.2s;
+  transform: rotate(58deg);
+}
+
+.shooting-star:nth-child(11) {
+  top: 45%;
+  left: -100px;
+  animation-delay: 8s;
+  transform: rotate(43deg);
+}
+
+.shooting-star:nth-child(12) {
+  top: 80%;
+  left: -100px;
+  animation-delay: 8.8s;
+  transform: rotate(62deg);
+}
+
+.shooting-star:nth-child(13) {
+  top: 55%;
+  left: -100px;
+  animation-delay: 9.6s;
+  transform: rotate(47deg);
+}
+
+.shooting-star:nth-child(14) {
+  top: 75%;
+  left: -100px;
+  animation-delay: 10.4s;
+  transform: rotate(53deg);
+}
+
+.shooting-star:nth-child(15) {
+  top: 65%;
+  left: -100px;
+  animation-delay: 11.2s;
+  transform: rotate(50deg);
+}
+
+/* Create a second animation for shooting stars from different angles */
+@keyframes shooting-alt {
+  0% {
+    transform: translate(-100px, 100vh) rotate(-45deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(100vw + 100px), -100px) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
+/* Apply alternate animation to some shooting stars for variety */
+.shooting-star:nth-child(4),
+.shooting-star:nth-child(8),
+.shooting-star:nth-child(12) {
+  left: -100px;
+  top: 100vh;
+  animation-name: shooting-alt;
 }
 
 @keyframes twinkle {

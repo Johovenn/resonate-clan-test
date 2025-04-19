@@ -1,5 +1,6 @@
 "use client"
 
+import Footer from "@/components/Footer"
 import MultipleChoice from "@/components/MultipleChoice"
 import ProgressBar from "@/components/ProgressBar"
 import QuestionBox from "@/components/QuestionBox"
@@ -298,6 +299,13 @@ export default function ClanTestPage(){
         const newAnswers = [...answers]
         newAnswers[counter] = selectedOption
         setAnswers(newAnswers)
+        
+        // Auto-advance to the next question if not on the last question
+        if (counter < questions.length - 1) {
+            setTimeout(() => {
+                setCounter(counter + 1)
+            }, 500) // Half-second delay before moving to the next question
+        }
     }
 
     useEffect(() => {
@@ -331,65 +339,68 @@ export default function ClanTestPage(){
     if (!isClient) return null
     
     return(
-        <div
-            className="h-screen w-screen flex flex-col items-center bg-cover bg-center px-2 pt-4 md:px-3 lg:px-6 xl:px-4 xl:py-8"
-            style={{ backgroundImage: "url('/background-dark.png')" }}
-        >
-            <QuestionBox question={language === 'en' ? questions[counter].english_question : questions[counter].indonesian_question} />
+        <div className="overflow-x-auto">
+            <div
+                className="h-screen w-screen flex flex-col items-center bg-cover bg-center px-2 pt-4 md:px-3 lg:px-6 xl:px-4 xl:py-8"
+                style={{ backgroundImage: "url('/background-dark.png')" }}
+            >
+                <QuestionBox question={language === 'en' ? questions[counter].english_question : questions[counter].indonesian_question} />
 
-            <div className="flex flex-col items-center md:mt-6 lg:mt-8">
-                <MultipleChoice 
-                    options={language === 'en' ? questions[counter].english_answers : questions[counter].indonesian_answers}
-                    onChange={handleAnswerChange}
-                    selectedOption={answers[counter]}
-                />
-            </div>
-            
-            <div className="space-x-5 flex items-center">
-                <Button 
-                    onClick={() => setCounter(counter - 1)} 
-                    disabled={counter === 0}
-                    className="flex items-center gap-3 border-2 border-white"
-                >
-                    <ChevronsLeft/>
-                        <p className="max-md:hidden">
-                            {language === 'en' ? 'Previous Question' : 'Pertanyaan Sebelumnya'}
-                        </p>
-                </Button>
-                <ProgressBar 
-                    currentProgress={counter + 1}
-                    total={questions.length}
-                />
-                {
-                    counter !== 9
-                        ?
+                <div className="flex flex-col items-center md:mt-6 lg:mt-8">
+                    <MultipleChoice 
+                        options={language === 'en' ? questions[counter].english_answers : questions[counter].indonesian_answers}
+                        onChange={handleAnswerChange}
+                        selectedOption={answers[counter]}
+                    />
+                </div>
+                
+                <div className="space-x-5 flex items-center">
                     <Button 
-                        onClick={() => {
-                            setCounter(counter + 1)
-                        }} 
-                        disabled={counter === questions.length - 1}
+                        onClick={() => setCounter(counter - 1)} 
+                        disabled={counter === 0}
                         className="flex items-center gap-3 border-2 border-white"
                     >
-                        <p className="max-md:hidden">
-                            {language === 'en' ? 'Next Question' : 'Pertanyaan Selanjutnya'}
-                        </p>
-                        <ChevronsRight/>
+                        <ChevronsLeft/>
+                            <p className="max-md:hidden">
+                                {language === 'en' ? 'Previous Question' : 'Pertanyaan Sebelumnya'}
+                            </p>
                     </Button>
-                        :
-                    <Button
-                        onClick={() => {
-                            determineTopClan()
-                        }} 
-                        disabled={!isAllAnswered}
-                        className="flex items-center gap-3 border-2 border-white"
-                    >
-                        <p className="max-md:hidden">
-                            {language === 'en' ? 'Finish Test' : 'Selesaikan Test'}
-                        </p>
-                        <Check />
-                    </Button>
-                }
+                    <ProgressBar 
+                        currentProgress={counter + 1}
+                        total={questions.length}
+                    />
+                    {
+                        counter !== 9
+                            ?
+                        <Button 
+                            onClick={() => {
+                                setCounter(counter + 1)
+                            }} 
+                            disabled={counter === questions.length - 1}
+                            className="flex items-center gap-3 border-2 border-white"
+                        >
+                            <p className="max-md:hidden">
+                                {language === 'en' ? 'Next Question' : 'Pertanyaan Selanjutnya'}
+                            </p>
+                            <ChevronsRight/>
+                        </Button>
+                            :
+                        <Button
+                            onClick={() => {
+                                determineTopClan()
+                            }} 
+                            disabled={!isAllAnswered}
+                            className="flex items-center gap-3 border-2 border-white"
+                        >
+                            <p className="max-md:hidden">
+                                {language === 'en' ? 'Finish Test' : 'Selesaikan Test'}
+                            </p>
+                            <Check />
+                        </Button>
+                    }
+                </div>
             </div>
+            <Footer />
         </div>
     )
 }
