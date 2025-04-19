@@ -3,7 +3,6 @@
 import CustomButton from "@/components/CustomButton"
 import Footer from "@/components/Footer"
 import LanguageSwitcher from "@/components/LanguageSwitcher"
-import { useClanResult } from "@/context/clanResultContext"
 import { useLanguage } from "@/context/languageContext"
 import { Birthstone, Press_Start_2P } from "next/font/google"
 import Image from "next/image"
@@ -16,19 +15,11 @@ const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] })
 export default function LandingPage() {
     const router = useRouter()
     const {language} = useLanguage()
-    const {clanResult, setClanResult} = useClanResult()
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
         setMounted(true)
-
-        if (typeof window !== 'undefined') {
-            const savedClan = localStorage.getItem('userClanResult')
-            if (savedClan) {
-                setClanResult(savedClan)
-            }
-        }
-    }, [setClanResult])
+    }, [])
 
     const buttonText = (language === 'en' ? 'Begin Test' : 'Mulai Tes');
     
