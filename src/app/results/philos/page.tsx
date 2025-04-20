@@ -57,8 +57,8 @@ export default function PhilosPage(){
                             {
                                 clanResult === 'philos'
                                 ? language === 'en'
-                                    ? <>You Are a <span className="font-black text-shadow-lg text-shadow-white">Philos</span></>
-                                    : <>Kamu Adalah Seorang <span className="font-black text-shadow-lg text-shadow-white">Philos</span></>
+                                    ? <>You Are a <span className="font-black">Philos</span></>
+                                    : <>Kamu Adalah Seorang <span className="font-black">Philos</span></>
                                 : language === 'en'
                                     ? <><span className="font-black">Description</span></>
                                     : <><span className="font-black">Deskripsi</span></>

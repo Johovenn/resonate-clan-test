@@ -54,77 +54,79 @@ export default function NeuroPage(){
 
                     {/* Description - Always scrollable but contained differently based on screen size */}
                     <div className="flex-1 lg:overflow-y-auto px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-8 pb-8 lg:pb-16">
-                    <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-medium mb-4 lg:mb-8`}>
-                        {
-                            clanResult === 'neuro'
-                            ?
-                                <>You are a <span className={`font-black`}>Neuro</span></>
-                            :
-                                <><span className={`font-black`}>Description</span></>
-                        }
-                    </h3>
-                    <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
-                        {language === 'en' ? (
-                            <>
-                                The <span className="font-black">Neuro</span> clan is a group of intellectuals and thinkers highly skilled in science, technology, and strategy. They are leaders who can see the bigger picture and think far ahead, using logic and analysis to solve problems. A Neuro member is someone who tends to think deeply and relies on intelligence to create innovative solutions. In an uncertain world, they are the ones who carefully plan and anticipate the next steps with precise detail.
-                            </>
-                        ) : (
-                            <>
-                                Clan <span className="font-black">Neuro</span> adalah kelompok para intelektual dan pemikir yang sangat terampil dalam bidang sains, teknologi, dan strategi. Mereka adalah para pemimpin yang dapat melihat gambaran besar dan berpikir jauh ke depan, menggunakan logika dan analisis untuk memecahkan masalah. Seorang anggota Neuro adalah sosok yang cenderung mendalam dalam pemikiran dan mengandalkan kecerdasan untuk menciptakan solusi inovatif. Dalam dunia yang penuh ketidakpastian, mereka adalah orang-orang yang mampu merencanakan dengan hati-hati dan mengantisipasi langkah-langkah berikutnya dengan detail yang presisi.
-                            </>
-                        )}
-                    </p>
+                        <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-medium mb-4 lg:mb-8`}>
+                            {
+                                clanResult === 'neuro'
+                                ?
+                                    <>You are a <span className={`font-black`}>Neuro</span></>
+                                :
+                                    language === 'en' 
+                                        ? <><span className="font-black">Description</span></>
+                                        : <><span className="font-black">Deskripsi</span></>
+                            }
+                        </h3>
+                        <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                            {language === 'en' ? (
+                                <>
+                                    The <span className="font-black">Neuro</span> clan is a group of intellectuals and thinkers highly skilled in science, technology, and strategy. They are leaders who can see the bigger picture and think far ahead, using logic and analysis to solve problems. A Neuro member is someone who tends to think deeply and relies on intelligence to create innovative solutions. In an uncertain world, they are the ones who carefully plan and anticipate the next steps with precise detail.
+                                </>
+                            ) : (
+                                <>
+                                    Clan <span className="font-black">Neuro</span> adalah kelompok para intelektual dan pemikir yang sangat terampil dalam bidang sains, teknologi, dan strategi. Mereka adalah para pemimpin yang dapat melihat gambaran besar dan berpikir jauh ke depan, menggunakan logika dan analisis untuk memecahkan masalah. Seorang anggota Neuro adalah sosok yang cenderung mendalam dalam pemikiran dan mengandalkan kecerdasan untuk menciptakan solusi inovatif. Dalam dunia yang penuh ketidakpastian, mereka adalah orang-orang yang mampu merencanakan dengan hati-hati dan mengantisipasi langkah-langkah berikutnya dengan detail yang presisi.
+                                </>
+                            )}
+                        </p>
 
-                    <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
-                        {language === 'en' ? 'Characteristics' : 'Karakteristik'}
-                    </h3>
-                    <ul className={`list-disc list-inside ${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
-                        {language === 'en' ? (
-                            <>
-                                <li>Possesses sharp and logical analytical thinking.</li>
-                                <li>Skilled in designing data- and technology-based solutions.</li>
-                                <li>Prefers to solve problems in a systematic and structured way.</li>
-                                <li>Capable of identifying new opportunities and planning long term.</li>
-                            </>
-                        ) : (
-                            <>
-                                <li>Memiliki pemikiran analitis yang tajam dan logis.</li>
-                                <li>Terampil dalam merancang solusi berbasis data dan teknologi.</li>
-                                <li>Lebih suka memecahkan masalah dengan cara yang sistematis dan terstruktur.</li>
-                                <li>Memiliki kemampuan untuk mengidentifikasi peluang baru dan merencanakan jangka panjang.</li>
-                            </>
-                        )}
-                    </ul>
+                        <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
+                            {language === 'en' ? 'Characteristics' : 'Karakteristik'}
+                        </h3>
+                        <ul className={`list-disc list-inside ${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                            {language === 'en' ? (
+                                <>
+                                    <li>Possesses sharp and logical analytical thinking.</li>
+                                    <li>Skilled in designing data- and technology-based solutions.</li>
+                                    <li>Prefers to solve problems in a systematic and structured way.</li>
+                                    <li>Capable of identifying new opportunities and planning long term.</li>
+                                </>
+                            ) : (
+                                <>
+                                    <li>Memiliki pemikiran analitis yang tajam dan logis.</li>
+                                    <li>Terampil dalam merancang solusi berbasis data dan teknologi.</li>
+                                    <li>Lebih suka memecahkan masalah dengan cara yang sistematis dan terstruktur.</li>
+                                    <li>Memiliki kemampuan untuk mengidentifikasi peluang baru dan merencanakan jangka panjang.</li>
+                                </>
+                            )}
+                        </ul>
 
-                    <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
-                        {language === 'en' ? 'Philosophy' : 'Filosofi'}
-                    </h3>
-                    <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
-                        {language === 'en' ? (
-                            <>
-                                For Neuro, technology and knowledge are the main keys to achieving victory. They believe that with intelligence, almost anything is possible. They play a crucial role in both warfare and development, often acting as the brains behind an organization or group that leads with deep strategy.
-                            </>
-                        ) : (
-                            <>
-                                Bagi Neuro, teknologi dan pengetahuan adalah kunci utama dalam mencapai kemenangan. Mereka percaya bahwa dengan kecerdasan, hampir segala sesuatu dapat dicapai. Mereka memiliki peran yang sangat penting dalam dunia peperangan dan pembangunan, seringkali bertindak sebagai otak dari sebuah organisasi atau kelompok yang memimpin dengan strategi yang mendalam.
-                            </>
-                        )}
-                    </p>
+                        <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
+                            {language === 'en' ? 'Philosophy' : 'Filosofi'}
+                        </h3>
+                        <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                            {language === 'en' ? (
+                                <>
+                                    For Neuro, technology and knowledge are the main keys to achieving victory. They believe that with intelligence, almost anything is possible. They play a crucial role in both warfare and development, often acting as the brains behind an organization or group that leads with deep strategy.
+                                </>
+                            ) : (
+                                <>
+                                    Bagi Neuro, teknologi dan pengetahuan adalah kunci utama dalam mencapai kemenangan. Mereka percaya bahwa dengan kecerdasan, hampir segala sesuatu dapat dicapai. Mereka memiliki peran yang sangat penting dalam dunia peperangan dan pembangunan, seringkali bertindak sebagai otak dari sebuah organisasi atau kelompok yang memimpin dengan strategi yang mendalam.
+                                </>
+                            )}
+                        </p>
 
-                    <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
-                        {language === 'en' ? 'Principle' : 'Prinsip'}
-                    </h3>
-                    <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
-                        {language === 'en'
-                            ? 'Romans 12:2 (NIV) — Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—His good, pleasing and perfect will.'
-                            : 'Roma 12:2 (TB)  Janganlah kamu menjadi serupa dengan dunia ini, tetapi berubahlah oleh pembaharuan budimu, sehingga kamu dapat membedakan manakah kehendak Allah: apa yang baik, yang berkenan kepada Allah dan yang sempurna.'
-                        }
-                    </p>
-                    <CustomButton
-                        onClick={() => router.push(`/results`)}
-                    >
-                        {language === 'en' ? 'Check out other clans' : 'Lihat clan lainnya'}
-                    </CustomButton>
+                        <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
+                            {language === 'en' ? 'Principle' : 'Prinsip'}
+                        </h3>
+                        <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                            {language === 'en'
+                                ? 'Romans 12:2 (NIV) — Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—His good, pleasing and perfect will.'
+                                : 'Roma 12:2 (TB)  Janganlah kamu menjadi serupa dengan dunia ini, tetapi berubahlah oleh pembaharuan budimu, sehingga kamu dapat membedakan manakah kehendak Allah: apa yang baik, yang berkenan kepada Allah dan yang sempurna.'
+                            }
+                        </p>
+                        <CustomButton
+                            onClick={() => router.push(`/results`)}
+                        >
+                            {language === 'en' ? 'Check out other clans' : 'Lihat clan lainnya'}
+                        </CustomButton>
                     </div>
                 </div>
             </div>
