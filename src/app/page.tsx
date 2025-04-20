@@ -4,13 +4,13 @@ import CustomButton from "@/components/CustomButton"
 import Footer from "@/components/Footer"
 import LanguageSwitcher from "@/components/LanguageSwitcher"
 import { useLanguage } from "@/context/languageContext"
-import { Birthstone, Press_Start_2P } from "next/font/google"
+import { Birthstone, PT_Sans } from "next/font/google"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
 const birthstone = Birthstone({ subsets: ["latin"], weight: ['400'] })
-const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] })
+const PressStart2P = PT_Sans({ subsets: ['latin'], weight: ["400", "700"] })
 
 export default function LandingPage() {
     const router = useRouter()
@@ -54,7 +54,7 @@ export default function LandingPage() {
                             {language === 'en' ? 'are you?' : 'clan-mu!'}
                         </h2>
                     </div>
-                    <p className={`${PressStart2P.className} text-xs text-white sm:text-sm md:text-base lg:text-lg w-full max-w-[600px] text-center mt-12 mb-6 px-4`}>
+                    <p className={`${PressStart2P.className} font-bold tracking-widest text-md text-white sm:text-lg md:text-md lg:text-2xl w-full max-w-[600px] text-center mt-12 mb-6 px-4`}>
                         Hey, Resonians!
                         <br />
                         {language === 'en' ? 'Find the right clan for you now!' : 'Temukan clan yang cocok denganmu!'}

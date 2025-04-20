@@ -1,10 +1,10 @@
-import { JetBrains_Mono } from "next/font/google";
+import { PT_Sans } from "next/font/google";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import clsx from "clsx";
 import Image from "next/image";
 
-const JetBrains = JetBrains_Mono({ subsets: ['latin'], weight: ["400", "700"] });
+const JetBrains = PT_Sans({ subsets: ['latin'], weight: ["400", "700"] });
 
 interface MultipleChoiceProps {
     options: string[];
@@ -41,14 +41,14 @@ export default function MultipleChoice(props: MultipleChoiceProps) {
                                 className="absolute object-cover w-full h-full"
                             />
                             
-                            <div className="relative z-10 w-full h-full flex justify-center items-center text-center">
+                            <div className="relative z-10 w-full h-full flex justify-center items-center text-center ">
                                 <RadioGroupItem id={`option-${index}`} value={option} className="sr-only" />
                                 
                                 <Label
                                     htmlFor={`option-${index}`}
                                     className={clsx(
                                         JetBrains.className,
-                                        "text-white font-bold leading-tight px-8 sm:px-10 md:px-12 py-2 sm:py-3 md:py-4 lg:py-5 text-xs sm:text-sm md:text-md"
+                                        "text-white font-bold leading-tight tracking-widest px-8 sm:px-10 md:px-12 py-2 sm:py-3 md:py-4 lg:py-5 text-xs sm:text-sm md:text-md"
                                     )}
                                 >
                                     {option}

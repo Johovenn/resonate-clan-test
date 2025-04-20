@@ -4,12 +4,13 @@ import CustomButton from "@/components/CustomButton"
 import Footer from "@/components/Footer"
 import { useClanResult } from "@/context/clanResultContext"
 import { useLanguage } from "@/context/languageContext"
-import { Orbitron, Press_Start_2P } from "next/font/google"
+import { Orbitron, Press_Start_2P, PT_Sans } from "next/font/google"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 
 const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] })
 const orbitron = Orbitron({ subsets: ["latin"], weight: ['400', '500', '600', '700', '800', '900'] })
+const ptSans = PT_Sans({ subsets: ["latin"], weight: ['400', '700'] })
 
 export default function FortePage() {
     const router = useRouter()
@@ -62,7 +63,7 @@ export default function FortePage() {
                             }
                         </h3>
 
-                        <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                        <p className={`${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {language === 'en' ? (
                                 <>
                                     The <span className="font-black">Forte</span> clan symbolizes physical strength and resilience. They are trained warriors, ready to face challenges head-on and rely on their physical might and courage to overcome any obstacle. For them, battle is not only about physical power, but also about unwavering determination and fighting spirit. Forte members deeply value personal strength, endurance, and confidence when dealing with difficult situations. They are often the frontliners in battle, prioritizing direct action and bravery.
@@ -77,7 +78,7 @@ export default function FortePage() {
                         <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
                             {language === 'en' ? 'Characteristics' : 'Karakteristik'}
                         </h3>
-                        <ul className={`list-disc list-inside ${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                        <ul className={`list-disc list-inside ${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {language === 'en' ? (
                                 <>
                                     <li>Possesses exceptional physical strength and combat skills.</li>
@@ -98,7 +99,7 @@ export default function FortePage() {
                         <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
                             {language === 'en' ? 'Philosophy' : 'Filosofi'}
                         </h3>
-                        <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                        <p className={`${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {language === 'en' ? (
                                 <>
                                     For Forte, physical strength is everything. They believe that to protect freedom and honor, one must have the endurance to survive the battlefield and defeat enemies with their own hands. For them, combat is a part of their identity.
@@ -113,7 +114,7 @@ export default function FortePage() {
                         <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
                             {language === 'en' ? 'Principle' : 'Prinsip'}
                         </h3>
-                        <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                        <p className={`${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {language === 'en'
                                 ? `Isaiah 40:31 (NIV) But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.`
                                 : `Yesaya 40:31 (TB) tetapi orang-orang yang menanti-nantikan TUHAN mendapat kekuatan baru: mereka seumpama rajawali yang naik terbang dengan kekuatan sayapnya mereka berlari dan tidak menjadi lesu, mereka berjalan dan tidak menjadi lelah.`}

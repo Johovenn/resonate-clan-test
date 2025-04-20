@@ -4,12 +4,13 @@ import CustomButton from "@/components/CustomButton"
 import Footer from "@/components/Footer"
 import { useClanResult } from "@/context/clanResultContext"
 import { useLanguage } from "@/context/languageContext"
-import { Orbitron, Press_Start_2P } from "next/font/google"
+import { Orbitron, Press_Start_2P, PT_Sans } from "next/font/google"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 
 const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] })
 const orbitron = Orbitron({ subsets: ["latin"], weight: ['400', '500', '600', '700', '800', '900'] })
+const ptSans = PT_Sans({ subsets: ["latin"], weight: ['400', '700'] })
 
 export default function OculusPage(){
     const router = useRouter()
@@ -65,7 +66,7 @@ export default function OculusPage(){
                             }
                         </h3>
 
-                        <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                        <p className={`${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {language === 'en' ? (
                                 <>
                                     The <span className="font-black">Oculus</span> clan is known for their extraordinary ability to observe and analyze situations with sharp precision. They possess heightened senses, especially sight, enabling them to see things hidden or invisible to others. Oculus members excel in reconnaissance, field strategy, and battle analysis. With their foresight and keen perception, they often lead in planning tactics and predicting enemy moves. They&apos;re not just observers, but brilliant strategists.
@@ -80,7 +81,7 @@ export default function OculusPage(){
                         <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
                             {language === 'en' ? 'Characteristics' : 'Karakteristik'}
                         </h3>
-                        <ul className={`list-disc list-inside ${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                        <ul className={`list-disc list-inside ${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {language === 'en' ? (
                                 <>
                                     <li>Has sharp observational and analytical abilities.</li>
@@ -101,7 +102,7 @@ export default function OculusPage(){
                         <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
                             {language === 'en' ? 'Philosophy' : 'Filosofi'}
                         </h3>
-                        <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                        <p className={`${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {language === 'en' ? (
                                 <>
                                     For the Oculus, victory comes from the ability to see farther and sharper than others. They believe that by observing every small detail and utilizing keen perception, they can craft tactics that create significant breakthroughs in battles or complex situations. They&apos;re masters at reading the room and spotting opportunities others miss.
@@ -116,7 +117,7 @@ export default function OculusPage(){
                         <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
                             {language === 'en' ? 'Principle' : 'Prinsip'}
                         </h3>
-                        <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                        <p className={`${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {language === 'en' ? (
                                 <>
                                     Matthew 6:22-23 (NIV) — “The eye is the lamp of the body. If your eyes are healthy, your whole body will be full of light. But if your eyes are unhealthy, your whole body will be full of darkness. If then the light within you is darkness, how great is that darkness!”

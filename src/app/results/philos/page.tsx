@@ -4,12 +4,13 @@ import CustomButton from "@/components/CustomButton"
 import Footer from "@/components/Footer"
 import { useClanResult } from "@/context/clanResultContext"
 import { useLanguage } from "@/context/languageContext"
-import { Orbitron, Press_Start_2P } from "next/font/google"
+import { Orbitron, Press_Start_2P, PT_Sans } from "next/font/google"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 
 const PressStart2P = Press_Start_2P({ subsets: ['latin'], weight: ["400"] })
-const orbitron = Orbitron({ subsets: ["latin"], weight: ['400', '500', '600', '700', '800', '900'] })
+const orbitron = Orbitron({ subsets: ["latin"], weight: ['400', '700'] })
+const ptSans = PT_Sans({ subsets: ["latin"], weight: ['400', '700'] })
 
 export default function PhilosPage(){
     const router = useRouter()
@@ -53,7 +54,7 @@ export default function PhilosPage(){
 
                     {/* Description */}
                     <div className="flex-1 lg:overflow-y-auto px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-8 pb-8 lg:pb-16">
-                        <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-medium text-shadow-lg text-shadow-white mb-4 lg:mb-8`}>
+                        <h3 className={`${orbitron.className} font-bold text-xl sm:text-2xl lg:text-3xl text-white mb-4 lg:mb-8`}>
                             {
                                 clanResult === 'philos'
                                 ? language === 'en'
@@ -65,7 +66,7 @@ export default function PhilosPage(){
                             }
                         </h3>
 
-                        <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                        <p className={`${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {
                                 language === 'en'
                                 ? <>
@@ -80,7 +81,7 @@ export default function PhilosPage(){
                         <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
                             {language === 'en' ? 'Characteristics' : 'Karakteristik'}
                         </h3>
-                        <ul className={`list-disc list-inside ${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                        <ul className={`list-disc list-inside ${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {
                                 language === 'en'
                                 ? <>
@@ -101,7 +102,7 @@ export default function PhilosPage(){
                         <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
                             {language === 'en' ? 'Philosophy' : 'Filosofi'}
                         </h3>
-                        <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                        <p className={`${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {
                                 language === 'en'
                                 ? `For Philos, without a strong emotional bond, there is no true victory. They believe that only through unity and mutual support can they achieve real freedom. For them, togetherness is the foundation of strength.`
@@ -112,7 +113,7 @@ export default function PhilosPage(){
                         <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
                             {language === 'en' ? 'Principle' : 'Prinsip'}
                         </h3>
-                        <p className={`${orbitron.className} text-sm sm:text-base lg:text-md text-white font-medium mb-6 lg:mb-12`}>
+                        <p className={`${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {language === 'en'
                                 ? `Proverbs 4:23 (NIV) — Above all else, guard your heart, for everything you do flows from it.`
                                 : `Amsal 4:23 (TB) — Jagalah hatimu dengan segala kewaspadaan, karena dari situlah terpancar kehidupan.`}
