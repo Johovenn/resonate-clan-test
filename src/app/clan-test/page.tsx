@@ -40,7 +40,7 @@ export default function ClanTestPage(){
 
     const questions = [
         {
-            indonesian_question: "Apa yang paling Anda hargai dalam hubungan antar individu?",
+            indonesian_question: "Apa yang paling kamu hargai dalam hubungan antar individu?",
             english_question: "What do you value most in interpersonal relationships?",
             indonesian_answers: [
                 "Kecerdasan dan pemahaman yang mendalam antara satu sama lain.",
@@ -62,7 +62,7 @@ export default function ClanTestPage(){
             ]
         },
         {
-            indonesian_question: "Jika Anda diminta untuk memimpin sebuah tim dalam suatu proyek besar, apa yang akan Anda lakukan terlebih dahulu?",
+            indonesian_question: "Jika kamu diminta untuk memimpin sebuah tim dalam suatu proyek besar, apa yang akan kamu lakukan terlebih dahulu?",
             english_question: "If you were asked to lead a team in a major project, what would you do first?",
             indonesian_answers: [
                 "Memastikan semua anggota tim merasa dihargai dan membangun hubungan kuat di antara mereka.",
@@ -84,7 +84,7 @@ export default function ClanTestPage(){
             ]
         },
         {
-            indonesian_question: "Bagaimana Anda mendekati pembelajaran atau pemecahan masalah baru?",
+            indonesian_question: "Bagaimana kamu mendekati pembelajaran atau pemecahan masalah baru?",
             english_question: "How do you approach learning or solving a new problem?",
             indonesian_answers: [
                 "Dengan menghadapi tantangan tersebut secara langsung dan belajar dari pengalaman praktis.",
@@ -106,7 +106,7 @@ export default function ClanTestPage(){
             ]
         },
         {
-            indonesian_question: "Ketika menghadapi ketidakpastian, bagaimana Anda menghadapinya?",
+            indonesian_question: "Ketika menghadapi ketidakpastian, bagaimana kamu menghadapinya?",
             english_question: "When facing uncertainty, how do you deal with it?",
             indonesian_answers: [
                 "Berbicara dengan orang lain untuk menjaga semangat dan memastikan semua orang tetap merasa terhubung.",
