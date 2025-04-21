@@ -66,7 +66,7 @@ export default function PhilosPage(){
                             }
                         </h3>
 
-                        <p className={`${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
+                        <p className={`${ptSans.className} tracking-widest font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {
                                 language === 'en'
                                 ? <>
@@ -81,7 +81,7 @@ export default function PhilosPage(){
                         <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
                             {language === 'en' ? 'Characteristics' : 'Karakteristik'}
                         </h3>
-                        <ul className={`list-disc list-inside ${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
+                        <ul className={`list-disc list-inside ${ptSans.className} tracking-widest font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {
                                 language === 'en'
                                 ? <>
@@ -102,7 +102,7 @@ export default function PhilosPage(){
                         <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
                             {language === 'en' ? 'Philosophy' : 'Filosofi'}
                         </h3>
-                        <p className={`${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
+                        <p className={`${ptSans.className} tracking-widest font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {
                                 language === 'en'
                                 ? `For Philos, without a strong emotional bond, there is no true victory. They believe that only through unity and mutual support can they achieve real freedom. For them, togetherness is the foundation of strength.`
@@ -113,7 +113,7 @@ export default function PhilosPage(){
                         <h3 className={`${orbitron.className} text-xl sm:text-2xl lg:text-3xl text-white font-black mb-2 lg:mb-4`}>
                             {language === 'en' ? 'Principle' : 'Prinsip'}
                         </h3>
-                        <p className={`${ptSans.className} font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
+                        <p className={`${ptSans.className} tracking-widest font-bold text-base sm:text-md lg:text-lg text-white mb-6 lg:mb-12`}>
                             {language === 'en'
                                 ? `Proverbs 4:23 (NIV) — Above all else, guard your heart, for everything you do flows from it.`
                                 : `Amsal 4:23 (TB) — Jagalah hatimu dengan segala kewaspadaan, karena dari situlah terpancar kehidupan.`}
